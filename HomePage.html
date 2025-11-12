@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hive: Volunteer App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            margin-bottom: 1px;
+            background-color: #f5f5f5;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color:#8736AA;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+        }
+        .navbar .sign-up {
+            background-color: #8736AA; /* purple background */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 20px;
+        }
+        .text-section {
+            max-width: 50%;
+        }
+        .text-section h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .text-section p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .text-section .sign-up-btn {
+            background-color: #8736AA; /* purple background */
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .image-section img {
+            max-width: 90%;
+            border-radius: 10px;
+        }
+        .yellow-strip {
+            background-color:#FFE863 ; 
+            padding: 20px;
+            text-align: center;
+        }
+        .yellow-strip h2 {
+            color: white;
+        }
+        .yellow-strip p {
+            color: white;
+        }
+        .yellow-strip .icon {
+            width: 100px; /* Match the width of the .card */
+            height: 100px; /* Match the height of the .card */
+            object-fit: cover;
+        }
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            background-color:  #FFE863;
+            padding: 0px;
+        }
+        .green-block {
+            background-color: #f5f5f5; /* Match this to the background color of the entire website */
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .template-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-content: space-around;
+        }
+        .template-cards .card {
+            background-color: #FFE863; /* New background color for theme cards */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: #8736AA; /* purple text */
+        }
+        .template-cards .card a {
+            color: #8736AA; /* purple text */
+            text-decoration: underline;
+        }
+
+        .footer {
+            background-color: #8736AA; /* purple background */
+            color: white;
+            text-align: center;
+            padding: 10px; 
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .testimonial-section {
+            background-color: #f5f5f5;
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .testimonial-section h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        .testimonial-section p {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+        .testimonial {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .testimonial img {
+            max-width: 100px;
+            margin-right: 20px;
+            border-radius: 50%;
+        }
+        .testimonial .content {
+            text-align: left;
+        }
+        .testimonial .content h3 {
+            margin: 0 0 10px;
+        }
+        .testimonial .content p {
+            margin: 0;
+            font-size: 16px;
+            color: #666;
+        }
+        .testimonial .content .author {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="Logo.png" alt="Logo" style="height: 70px;">
+        </div>
+        <div class="nav-links">
+            <a href="#" class="Sign-up">Sign up</a>
+            <a href="#">Features</a>
+            <a href="#">About Us</a>
+            <a href="#">Meet the Team</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="text-section">
+            <h1>Volunteer App</h1>
+            <h2>Help your community now.</h2>
+            <p>Sign up for open positions. Get real credit on-campus.<p>
+            <button class="sign-up-btn">Sign up today</button>
+        </div>
+        <div class="image-section">
+            <img src=".jpg" alt="Volunteer App Screens">
+        </div>
+    </div>
+    <div class="yellow-strip">
+        <h2>Volunteer App</h2>
+        <p>Connect Now</p>
+        <div class="icon-container">
+            <img src=".png" alt=" icon 1" class="icon">
+            <img src=".png" alt=" icon 2" class="icon">
+            <img src=".png" alt=" icon 3" class="icon">
+            <img src=".png" alt=" icon 4" class="icon">
+        </div>
+    </div>
+    <div class="green-block">
+        <div class="Volunteer">
+        </div>
+        <div class="template-cards">
+            <div class="card">
+                <h3>Popular Volunteer spots in Houston!</h3>
+                <p>Get clear explanations and easy sign up options.</p>
+                <a href="#">Learn more</a>
+            </div>
+            <div class="card">
+                <h3>Information</h3>
+                <p>information.</p>
+                <a href="#">Learn more</a>
+            </div>
+            <div class="card">
+                <h3>Uhh</h3>
+                <p>Connect Now.</p>
+            <6>Not working right now</6>
+                <a href="#">Learn more</a>
+            </div>
+            <div class="card">
+                <h3>Sustainable Connections</h3>
+                <p>Receive daily tips on volunteer happenings near you.</p>
+                <a href="#">Learn more</a>
+            </div>
+            <div class="card">
+                <h3>Local volunteer Insights</h3>
+                <p>Gain insights for .</p>
+                <a href="#">Learn more</a>
+            </div>
+            <div class="card">
+                <h3>Instant Analysis</h3>
+                <p>Quickly determine .</p>
+                <a href="#">Learn more</a>
+            </div>
+        </div>
+    </div>
+    <div class="testimonial-section">
+        <h2>User and Company Testimonials</h2>
+        <p>Insights from users who have used it to connect to local volunteer opertunities</p>
+        <div class="testimonial">
+            <img src=".jpg" alt="User Photo">
+            <div class="content">
+                <h3>Emily Johnson</h3>
+                <p>Animal shelter volunteer from Prairie View A&M University</p>
+                <p>"I had been wanting to volunteer and connect with my local community, so glad I was able to get to work with the cure pupies!!"</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <h2>The #1 volunteer hookup</h2>
+        <p>As endorsed by top ...</p>
+        <h6>*Not a factual claim (currently).</h6>
+    </div>
