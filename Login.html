@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hive: Volunteer App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            margin-bottom: 1px;
+            background-color: #f5f5f5;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color:#8736AA;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+        }
+        .navbar .sign-up {
+            background-color: #8736AA; /* purple background */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 20px;
+        }
+        .text-section {
+            max-width: 50%;
+        }
+        .text-section h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .text-section p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .text-section .sign-up-btn {
+            background-color: #8736AA; /* purple background */
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .image-section img {
+            max-width: 90%;
+            border-radius: 10px;
+        }
+        .yellow-strip {
+            background-color:#FFE863 ; 
+            padding: 20px;
+            text-align: center;
+        }
+        .yellow-strip h2 {
+            color: white;
+        }
+        .yellow-strip p {
+            color: white;
+        }
+        .yellow-strip .icon {
+            width: 100px; /* Match the width of the .card */
+            height: 100px; /* Match the height of the .card */
+            object-fit: cover;
+        }
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            background-color:  #FFE863;
+            padding: 0px;
+        }
+        .green-block {
+            background-color: #f5f5f5; /* Match this to the background color of the entire website */
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .template-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-content: space-around;
+        }
+        .template-cards .card {
+            background-color: #FFE863; /* New background color for theme cards */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: #8736AA; /* purple text */
+        }
+        .template-cards .card a {
+            color: #8736AA; /* purple text */
+            text-decoration: underline;
+        }
+
+        .footer {
+            background-color: #8736AA; /* purple background */
+            color: white;
+            text-align: center;
+            padding: 10px; 
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .testimonial-section {
+            background-color: #f5f5f5;
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .testimonial-section h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        .testimonial-section p {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+        .testimonial {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .testimonial img {
+            max-width: 100px;
+            margin-right: 20px;
+            border-radius: 50%;
+        }
+        .testimonial .content {
+            text-align: left;
+        }
+        .testimonial .content h3 {
+            margin: 0 0 10px;
+        }
+        .testimonial .content p {
+            margin: 0;
+            font-size: 16px;
+            color: #666;
+        }
+        .testimonial .content .author {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo" style="height: 70px;">
+        </div>
+	<h1 style="color: white;">The Hive</h1>
+        <div class="nav-links">
+            <a href="Signup Page.html" class="Sign-up">Sign up</a>
+            <a href="#">Features</a>
+            <a href="#">About Us</a>
+            <a href="The Hive Meet The Team 1.html">Meet the Team</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="text-section">
+            <h2>Help your community now.</h2>
+          <div class="signup-container">
+        <h2>Login</h2>
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required><br>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required><br>
+            </select><br>
+
+            <button type="submit">Log in</button>
+
+        <div class="back-link">
+            <p>Dont have an account? <a href="Signup Page.html">Sign up here</a></p>
+        </div>
+    </div>
+    </div>
+    <div class="footer">
+        <h2>The #1 volunteer hookup</h2>
+        <p>As endorsed by top ...</p>
+        <h6>*Not a factual claim (currently).</h6>
+    </div>
