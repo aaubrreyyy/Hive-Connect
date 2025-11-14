@@ -5,13 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Hive: Volunteer App</title>
     <style>
+        /* 🍯 HONEYCOMB + THEME TOKENS */
+        :root {
+            /* Light honeycomb SVG (stronger hex outlines) */
+            --honeycomb: url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23f2c94c' stroke-width='1.2'%3E%3Cpolygon points='30,2 58,16 58,36 30,50 2,36 2,16'/%3E%3C/g%3E%3C/svg%3E");
+            --page-bg: #fffdf3;
+            --text-main: #161615;
+            --accent-purple: #8736AA;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --honeycomb: url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23f9e79f' stroke-width='1.2'%3E%3Cpolygon points='30,2 58,16 58,36 30,50 2,36 2,16'/%3E%3C/g%3E%3C/svg%3E");
+                --page-bg: #1b130c;
+                --text-main: #fdf5e6;
+            }
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             margin-bottom: 1px;
-            background-color: #fefcfc;
+            color: var(--text-main);
+
+            /* Gold glow + honeycombs */
+            background-color: var(--page-bg);
+            background-image:
+                radial-gradient(circle at top, rgba(255, 225, 150, 0.9), rgba(255, 253, 243, 0.95) 55%, var(--page-bg) 100%),
+                var(--honeycomb);
+            background-size: 100% 100%, 120px;
+            background-attachment: fixed;
         }
+
+        /* Also give honeycomb + glow to these sections */
+        .green-block,
+        .testimonial-section,
+        .footer {
+            background-color: transparent;
+            background-image:
+                radial-gradient(circle at top, rgba(255, 240, 180, 0.85), rgba(255, 253, 243, 0.96) 60%, var(--page-bg) 100%),
+                var(--honeycomb);
+            background-size: 100% 100%, 120px;
+        }
+
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -24,10 +61,9 @@
             text-decoration: none;
             color: white;
             margin: 0 10px;
-            
         }
         .navbar .sign-up {
-            background-color: #a8aa36; /* purple background */
+            background-color: #a8aa36;
             color: white;
             padding: 10px 20px;
             border-radius: 500px;
@@ -39,16 +75,17 @@
             padding: 50px 20px 80px;
         }
         .mybtn{
-            display: inline-block;         /* So the background becomes a "box" */
+            display: inline-block;
             padding: 10px 15px;
             background-color: rgb(242, 224, 167);
             text-decoration: none;
             color: black;
             border-radius: 8px;
-            }
+        }
         .mybtn:hover {
-            background-color:  #8736AA;     /* Color on hover */
-            }
+            background-color: #8736AA;
+            color: white;
+        }
         .text-section {
             max-width: 50%;
         }
@@ -61,7 +98,7 @@
             margin-bottom: 20px;
         }
         .text-section .sign-up-btn {
-            background-color: #8736AA; /* purple background */
+            background-color: #8736AA;
             color: white;
             padding: 15px 30px;
             border: none;
@@ -74,7 +111,7 @@
             border-radius: 10px;
         }
         .yellow-strip {
-            background-color:#FFE863 ; 
+            background-color:#FFE863 ;
             padding: 20px;
             text-align: center;
         }
@@ -85,22 +122,23 @@
             color: white;
         }
         .yellow-strip .icon {
-            width: 100px; /* Match the width of the .card */
-            height: 100px; /* Match the height of the .card */
+            width: 100px;
+            height: 100px;
             object-fit: cover;
         }
         .icon-container {
             display: flex;
             justify-content: center;
             gap: 10px;
-            background-color:  #FFE863;
+            background-color: #FFE863;
             padding: 0px;
         }
+
         .green-block {
-            background-color: #f5f5f5; /* Match this to the background color of the entire website */
             padding: 20px;
             margin-top: 20px;
         }
+
         .template-cards {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -108,42 +146,38 @@
             justify-content: space-around;
         }
         .template-cards .card {
-            background-color: #FFE863; /* New background color for theme cards */
+            background-color: #FFE863;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            color: #8736AA; /* purple text */
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            color: #8736AA;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         .template-cards .card a {
-            color: #8736AA; /* purple text */
+            color: #8736AA;
             text-decoration: underline;
         }
         
-        /* Hover effect */
         .card:hover {
-        transform: scale(1.05); /* Slightly bigger */
-        box-shadow: 0 8px 20px rgba(0,0,0,0.2); /* Stronger shadow */
-        cursor: pointer;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            cursor: pointer;
         }
-
 
         .footer {
-            background-color: #8736AA; /* purple background */
-            color: white;
             text-align: center;
-            padding: 1px; 
-            position: absolute;
-            bottom: 100;
+            color: #8736AA;
+            padding: 20px; 
             width: 100%;
         }
+
         .testimonial-section {
-            background-color: #f5f5f5;
             padding: 50px 20px;
             text-align: center;
+            color: #161615;
         }
+
         .testimonial-section h2 {
             font-size: 30px;
             margin-bottom: 20px;
@@ -152,6 +186,7 @@
             font-size: 18px;
             margin-bottom: 40px;
         }
+
         .testimonial {
             display: flex;
             justify-content: center;
@@ -174,54 +209,246 @@
         }
         .testimonial .content h3 {
             margin: 0 0 10px;
-            
         }
         .testimonial .content p {
             margin: 0;
             font-size: 16px;
             color: #161615;
         }
-        .testimonial .content .author {
-            font-weight: bold;
-        }
+
         .slide-in {
-        opacity: 0;
-        transform: translateX(-30px);
-        animation: slideIn 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideIn 0.8s ease-out forwards;
         }
 
         @keyframes slideIn {
-        to {
-            opacity: 1;
-            transform: translateX(0);
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
-        }
-        
+
         .fade-section {
-        opacity: 0;
-        transform: translateY(40px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
         .fade-section.show {
-        opacity: 1;
-        transform: translateY(0);
+            opacity: 1;
+            transform: translateY(0);
         }
 
+        /* 🐝 FLOATING BEE ANIMATION ACROSS THE PAGE */
+        .page-bee {
+            position: fixed;
+            top: 18%;
+            left: -60px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(
+                90deg,
+                #2f2a26 0 18%,
+                #ffd54a 18% 46%,
+                #2f2a26 46% 64%,
+                #ffd54a 64% 82%,
+                #2f2a26 82% 100%
+            );
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+            animation: bee-fly 22s linear infinite;
+            z-index: 50;
+            pointer-events: none;
+        }
 
+        .page-bee::before,
+        .page-bee::after {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            top: -14px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transform-origin: bottom center;
+            animation: bee-wings 0.4s ease-in-out infinite alternate;
+        }
+
+        .page-bee::before {
+            left: -2px;
+            transform: rotate(-20deg);
+        }
+
+        .page-bee::after {
+            right: -2px;
+            transform: rotate(20deg);
+        }
+
+        .page-bee-eye {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #111;
+            top: 10px;
+            right: 4px;
+        }
+
+        @keyframes bee-fly {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 0;
+            }
+            5% {
+                opacity: 1;
+            }
+            25% {
+                transform: translateX(30vw) translateY(-20px);
+            }
+            50% {
+                transform: translateX(60vw) translateY(10px);
+            }
+            75% {
+                transform: translateX(90vw) translateY(-15px);
+            }
+            100% {
+                transform: translateX(125vw) translateY(0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes bee-wings {
+            from {
+                transform: translateY(0) scaleY(1);
+            }
+            to {
+                transform: translateY(2px) scaleY(0.8);
+            }
+        }
+                /* ===========================
+           EXTRA FLOATING BEES (4 more)
+           =========================== */
+        
+        /* Shared bee styling */
+        .bee {
+            position: fixed;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(
+                90deg,
+                #2f2a26 0 18%,
+                #ffd54a 18% 46%,
+                #2f2a26 46% 64%,
+                #ffd54a 64% 82%,
+                #2f2a26 82% 100%
+            );
+            box-shadow: 0 6px 10px rgba(0,0,0,0.25);
+            z-index: 999;
+            pointer-events: none;
+        }
+        
+        .bee::before,
+        .bee::after {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            top: -14px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            animation: wing-flap 0.4s ease-in-out infinite alternate;
+        }
+        
+        .bee::before { left: -3px; transform: rotate(-20deg); }
+        .bee::after  { right: -3px; transform: rotate(20deg); }
+        
+        @keyframes wing-flap {
+            from { transform: translateY(0) scaleY(1); }
+            to   { transform: translateY(2px) scaleY(0.8); }
+        }
+        
+        /* ============= Individual Bees ============= */
+        
+        /*** Bee 1 – Left to Right ***/
+        .bee1 {
+            top: 18vh;
+            left: -60px;
+            animation: bee1path 18s linear infinite;
+        }
+        
+        @keyframes bee1path {
+            0%   { transform: translateX(0) translateY(0); opacity: 0; }
+            5%   { opacity: 1; }
+            40%  { transform: translateX(50vw) translateY(-20px); }
+            80%  { transform: translateX(100vw) translateY(15px); }
+            100% { transform: translateX(125vw) translateY(0); opacity: 0; }
+        }
+        
+        /*** Bee 2 – Right to Left ***/
+        .bee2 {
+            top: 35vh;
+            right: -80px;
+            transform: scale(0.9);
+            animation: bee2path 22s linear infinite;
+        }
+        
+        @keyframes bee2path {
+            0%   { transform: translateX(0) translateY(0) scale(0.9); opacity: 0; }
+            10%  { opacity: 1; }
+            40%  { transform: translateX(-40vw) translateY(20px) scale(0.9); }
+            70%  { transform: translateX(-80vw) translateY(-25px) scale(0.9); }
+            100% { transform: translateX(-120vw) translateY(0) scale(0.9); opacity: 0; }
+        }
+        
+        /*** Bee 3 – Diagonal Upwards ***/
+        .bee3 {
+            top: 75vh;
+            left: -70px;
+            transform: scale(0.8);
+            animation: bee3path 26s linear infinite;
+        }
+        
+        @keyframes bee3path {
+            0%   { transform: translateX(0) translateY(0) scale(0.8); opacity: 0; }
+            10%  { opacity: 1; }
+            50%  { transform: translateX(55vw) translateY(-30vh) scale(0.8); }
+            100% { transform: translateX(110vw) translateY(-65vh) scale(0.8); opacity: 0; }
+        }
+        
+        /*** Bee 4 – Floating Zig-Zag ***/
+        .bee4 {
+            top: 55vh;
+            left: -60px;
+            transform: scale(0.75) rotate(-8deg);
+            animation: bee4path 24s ease-in-out infinite;
+        }
+        
+        @keyframes bee4path {
+            0%   { transform: translateX(0) translateY(0) rotate(-8deg) scale(0.75); opacity: 0; }
+            10%  { opacity: 1; }
+            25%  { transform: translateX(25vw) translateY(-25px) rotate(2deg) scale(0.75); }
+            50%  { transform: translateX(50vw) translateY(30px) rotate(-5deg) scale(0.75); }
+            75%  { transform: translateX(75vw) translateY(-15px) rotate(3deg) scale(0.75); }
+            100% { transform: translateX(110vw) translateY(0) rotate(-8deg) scale(0.75); opacity: 0; }
+        }
 
     </style>
 </head>
 <body>
+
     <div class="navbar">
         <div class="logo">
-            <img src="images/logo.png" width= "100" height= "5" alt="Logo" style="height: 70px; border-radius: 30%; object-fit: cover;">
+            <img src="images/logo.png" width="100" height="5" alt="Logo" style="height: 70px; border-radius: 30%; object-fit: cover;">
         </div>
         <h1 style="color: white; font-weight:bold">The Hive</h1>
         <div class="nav-links">
             <a href="Signup Page.html" class="mybtn">Sign up </a>
             <a href="#" class="mybtn">Events</a>
-            <a href="AboutUs.html" class="mybtn">About Us</a>
+            <a href="#" class="mybtn">About Us</a>
             <a href="TheHiveMeetTheTeam.html" class="mybtn">Meet the Team</a>
         </div>
     </div>
@@ -241,6 +468,7 @@
             <img src="images/volunteer.jpg" width="500" height="200"   alt="Volunteer App Screens">
         </div>
     </div>
+
     <div class="yellow-strip">
         <h2>Explore over 10+ ways to volunteer today!</h2>
        
@@ -251,9 +479,8 @@
             <img src="images/hospital.webp" alt=" icon 4" class="icon">
         </div>
     </div>
+
     <div class="green-block">
-        <div class="Volunteer">
-        </div>
         <div class="template-cards">
             <div class="card fade-section">
                 <h3>Popular Volunteer spots in Houston!</h3>
@@ -262,8 +489,7 @@
             </div>
             <div class="card fade-section">
                 <h3>Check out Volunteer of the month</h3>
-                <p></p>
-                <a href="#">Leaderboard</a>
+                <a href="volunteerOfTheMonth.html">Leaderboard</a>
             </div>
         
             <div class="card fade-section">
@@ -283,20 +509,23 @@
             </div>
         </div>
     </div>
+
     <div class="testimonial-section">
         <h2>User and Company Testimonials</h2>
         <p>Insights from users who have used it to connect to local volunteer opertunities</p>
+
         <div class="testimonial fade-section">
             <img src="images/user1.jpg" alt="User Photo">
             <div class="content fade-section">
                 <h3>Emily Johnson</h3>
-                <p>Animal shelter volunteer from Prairie View A&M Universit:</p>
+                <p>Animal shelter volunteer from Prairie View A&M University:</p>
                 <p>"I had been wanting to volunteer and connect with my local community, 
-                    so glad I was able to get to work with the cute pupies!!"</p>
+                    so glad I was able to get to work with the cute puppies!!"</p>
             </div>
-            
         </div>
+
         <br>
+
         <div class="testimonial fade-section">
             <img src="images/user2.jpg" alt="User Photo">
             <div class="content fade-section">
@@ -306,30 +535,44 @@
                     gather more volunteers from the local Houston area than ever!"</p>
             </div>   
         </div>
+
         <br>
+
         <div class="testimonial fade-section">
             <img src="images/user3.jpg" alt="User Photo">
             <div class="content fade-section">
                 <h3>James Michaelson</h3>
-                <p> <bold>Owner of Food 4 Everyone: </bold></p>
-                <p>"The Helping Hive hs helped us gain attention and bring in more volunteers to help give out food to people in need!"</p>
+                <p><bold>Owner of Food 4 Everyone:</bold></p>
+                <p>"The Helping Hive has helped us gain attention and bring in more volunteers to help give out food to people in need!"</p>
             </div>
-            
         </div>
     </div>
+
     <div class="footer">
         <h2>The #1 volunteer hookup</h2>
         <p>As endorsed by top ...</p>
         <h6>*Not a factual claim (currently).</h6>
     </div>
+
+    <!-- 🐝 Floating bee element -->
+    <div class="page-bee">
+        <div class="page-bee-eye"></div>
+    </div>
+
+    <!-- 🐝 Extra floating bees -->
+    <div class="bee bee1"></div>
+    <div class="bee bee2"></div>
+    <div class="bee bee3"></div>
+    <div class="bee bee4"></div>
+
     <script>
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("show");
-            } else {
-                entry.target.classList.remove("show"); 
-            }
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                } else {
+                    entry.target.classList.remove("show"); 
+                }
             });
         });
 
@@ -339,6 +582,6 @@
     </script>
 
 </body>
-
+</html>
 
 
