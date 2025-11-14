@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us - Hive Connect</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: transparent;
+      --text-color: #000000;
+      --accent-color: #fff;
+      --background-image: url('https://images.unsplash.com/photo-1626285094816-39f688104ce0?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    }
+
+    body {
+      font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--background-image) no-repeat center center fixed;
+      background-size: cover;
+      background-attachment: fixed;
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode {
+      background-color: #333;
+      color: #f5f5f5;
+      background-image: none;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--accent-color);
+      padding: 20px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .logo {
+      height: 50px;
+      width: auto;
+    }
+
+    .site-name {
+      font-size: 20px;
+      color: black;
+      font-weight: bold;
+    }
+
+    .navbar a,
+    .navbar button {
+      text-decoration: none;
+      color: black;
+      font-size: 16px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    .navbar a:hover,
+    .navbar button:hover {
+      color: #a3b18a;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: white;
+      transition: color 0.3s ease;
+    }
+
+    body.dark-mode .theme-toggle {
+      color: #f5f5f5;
+    }
+
+    .glass-panel {
+      backdrop-filter: blur(5px);
+      background: rgba(255, 255, 255, 0.2);
+      padding: 30px;
+      margin: 50px auto;
+      max-width: 900px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #000;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    #auto-type {
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 30px;
+      min-height: 40px;
+    }
+
+    .text-bubble {
+      background: var(--accent-color);
+      color: black;
+      padding: 15px 20px;
+      border-radius: 20px;
+      margin: 40px auto 20px auto;
+      text-align: center;
+      width: fit-content;
+      animation: slideIn 1s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar-right {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 10px;
+      }
+
+      .team {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .team-member {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="navbar-left">
+      <a href="index.html">
+        <img src="CareConnectImages/CareConnectLogo.png" alt="Hive Connect Logo" class="logo" />
+      </a>
+      <span class="site-name">Hive Connect</span>
+    </div>
+    <div class="navbar-right">
+      <a href="index.html">Home</a>
+      <a href="AboutUs.html">About Us</a>
+      <a href="SignupPage.html">Sign In</a>
+      <!--<button class="theme-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>-->
+    </div>
+  </div>
+
+  <div class="text-bubble">Hello there! Welcome to Hive Connect!</div>
+  <div id="auto-type"></div>
+
+  <!-- Content Panels -->
+  <div class="glass-panel" id="about">
+    <h1>About Hive Connect</h1>
+    <p>
+      Hive Connect is an AI-powered health assistant designed to help users better understand medical symptoms, conditions, and general health concerns. By using natural language processing, our chatbot engages in real-time conversation to provide clear explanations of medical terms, suggest potential causes of symptoms, and guide users toward appropriate next steps.
+    </p>
+    <p>
+      Whether you're a student researching a condition, a parent with questions about a child's symptoms, or someone just looking for trustworthy information, CareConnect offers accessible support—anytime, anywhere.
+    </p>
+    <p>
+      It’s important to note that CareConnect does <strong>not</strong> replace professional medical advice, diagnosis, or treatment. It is intended to complement—not substitute—the guidance of licensed healthcare providers.
+    </p>
+  </div>
+
+  <div class="glass-panel" id="mission">
+    <h2>Our Mission</h2>
+    <p>We aim to make tracking volunteering hoirs as a student more accessible, fun, and helpful — every event, every time.</p>
+  </div>
+
+  <div class="glass-panel" id="vision">
+    <h2>Our Vision</h2>
+    <p>Imagine a world where you can obtain accurate, personalized medical information all from the palm of your hand. We are building that reality today!</p>
+  </div>
+
+  <div class="glass-panel" id="goals">
+    <h2>Our Future Goals</h2>
+    <p>At Hive Connect, we’re working to make access to volunteer opertunities more accurate, readily available, and for students. We’re committed to helping you meet your goals as you advance in your academic career.</p>
+    <p>We imagine a world where you can easily share your medical records with us — safely — so we can give you care that's tailored just for you. Along with location access, we’ll help you find the right doctors nearby and connect you to pharmacies that have exactly what you need.</p>
+    <p>CareConnect is the place you can trust. We're here to take care of you!</p>
+  </div>
+
+  
+  <!-- Scripts -->
+  <script>
+    // Auto typing effect
+    const text = "Hive Connect makes volunteering simple, fun, and friendly.";
+    let index = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+      const typingElement = document.getElementById("auto-type");
+      if (!typingElement) return;
+
+      if (!isDeleting) {
+        typingElement.innerHTML = text.substring(0, index + 1);
+        index++;
+        if (index === text.length) {
+          isDeleting = true;
+          setTimeout(typeEffect, 2000);
+          return;
+        }
+      } else {
+        typingElement.innerHTML = text.substring(0, index - 1);
+        index--;
+        if (index === 0) {
+          isDeleting = false;
+        }
+      }
+      setTimeout(typeEffect, isDeleting ? 30 : 50);
+    }
+
+    typeEffect();
+
+    // Theme toggle logic
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const icon = darkModeToggle.querySelector('i');
+    const body = document.body;
+
+    function setDarkMode(enabled) {
+      if (enabled) {
+        body.classList.add('dark-mode');
+        icon.classList.replace('fa-moon', 'fa-sun');
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        body.classList.remove('dark-mode');
+        icon.classList.replace('fa-sun', 'fa-moon');
+        localStorage.removeItem('darkMode');
+      }
+    }
+
+    if (localStorage.getItem('darkMode') === 'enabled') {
+      setDarkMode(true);
+    }
+
+    darkModeToggle.addEventListener('click', () => {
+      setDarkMode(!body.classList.contains('dark-mode'));
+    });
+  </script>
+</body>
+</html>
