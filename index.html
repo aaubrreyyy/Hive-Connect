@@ -10,33 +10,45 @@
             margin: 0;
             padding: 0;
             margin-bottom: 1px;
-            background-color: #f5f5f5;
+            background-color: #fefcfc;
         }
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            padding: 0px 20px ;
             background-color:#8736AA;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 200px 40px rgba(0, 0, 0, 0.1);
         }
         .navbar a {
             text-decoration: none;
             color: white;
             margin: 0 10px;
+            
         }
         .navbar .sign-up {
             background-color: #8736AA; /* purple background */
             color: white;
             padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: 500px;
         }
         .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 50px 20px;
+            padding: 50px 20px 80px;
         }
+        .mybtn{
+            display: inline-block;         /* So the background becomes a "box" */
+            padding: 10px 15px;
+            background-color: rgb(242, 224, 167);
+            text-decoration: none;
+            color: black;
+            border-radius: 8px;
+            }
+        .mybtn:hover {
+            background-color: rgb(71, 5, 62);     /* Color on hover */
+            }
         .text-section {
             max-width: 50%;
         }
@@ -102,19 +114,29 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             text-align: center;
             color: #8736AA; /* purple text */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
         .template-cards .card a {
             color: #8736AA; /* purple text */
             text-decoration: underline;
         }
+        
+        /* Hover effect */
+        .card:hover {
+        transform: scale(1.05); /* Slightly bigger */
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2); /* Stronger shadow */
+        cursor: pointer;
+        }
+
 
         .footer {
             background-color: #8736AA; /* purple background */
             color: white;
             text-align: center;
-            padding: 10px; 
-            position: fixed;
-            bottom: 0;
+            padding: 1px; 
+            position: absolute;
+            bottom: 100;
             width: 100%;
         }
         .testimonial-section {
@@ -143,8 +165,9 @@
         }
         .testimonial img {
             max-width: 100px;
+            max-height: 100px;
             margin-right: 20px;
-            border-radius: 50%;
+            border-radius: 10%;
         }
         .testimonial .content {
             text-align: left;
@@ -165,34 +188,40 @@
 <body>
     <div class="navbar">
         <div class="logo">
-            <img src="Logo.png" alt="Logo" style="height: 70px;">
+            <img src="images/logo.png" width= "100" height= "5" alt="Logo" style="height: 70px; border-radius: 30%; object-fit: cover;">
         </div>
+        <h1 style="color: white;">The Hive</h1>
         <div class="nav-links">
-            <a href="#" class="Sign-up">Sign up</a>
-            <a href="#">Features</a>
-            <a href="#">About Us</a>
-            <a href="#">Meet the Team</a>
+            <a href="#" class="mybtn">Sign up </a>
+            <a href="#" class="mybtn">Features</a>
+            <a href="#" class="mybtn">About Us</a>
+            <a href="#" class="mybtn">Meet the Team</a>
         </div>
     </div>
+    
     <div class="container">
         <div class="text-section">
-            <h1>Volunteer App</h1>
-            <h2>Help your community now.</h2>
-            <p>Sign up for open positions. Get real credit on-campus.<p>
+            <h1>The Helping Hive</h1>
+            
+            <p> The Hive’s mission is to connect people across Houston through meaningful 
+                volunteer opportunities. We aim to make it easier for individuals to give back to their
+                 communities and for local organizations to find dedicated volunteers. By fostering 
+                 collaboration and service, The Hive helps build stronger, more connected neighborhoods.</p>
+            <h3>Sign up for open positions. Get real credit on-campus. Help your community now.</h3>
             <button class="sign-up-btn">Sign up today</button>
         </div>
         <div class="image-section">
-            <img src=".jpg" alt="Volunteer App Screens">
+            <img src="images/volunteer.jpg" width="500" height="200"   alt="Volunteer App Screens">
         </div>
     </div>
     <div class="yellow-strip">
-        <h2>Volunteer App</h2>
-        <p>Connect Now</p>
+        <h2>Explore over 10+ ways to volunteer today!</h2>
+       
         <div class="icon-container">
-            <img src=".png" alt=" icon 1" class="icon">
-            <img src=".png" alt=" icon 2" class="icon">
-            <img src=".png" alt=" icon 3" class="icon">
-            <img src=".png" alt=" icon 4" class="icon">
+            <img src="images/gardenicon.jpg" alt=" icon 1" class="icon">
+            <img src="images/foodbank.jpg" alt=" icon 2" class="icon">
+            <img src="images/animalshleter.png" alt=" icon 3" class="icon">
+            <img src="images/hospital.webp" alt=" icon 4" class="icon">
         </div>
     </div>
     <div class="green-block">
@@ -205,8 +234,8 @@
                 <a href="#">Learn more</a>
             </div>
             <div class="card">
-                <h3>Information</h3>
-                <p>information.</p>
+                <h3>Check out Volunteer of the month</h3>
+                <p></p>
                 <a href="#">Learn more</a>
             </div>
             <div class="card">
@@ -226,8 +255,8 @@
                 <a href="#">Learn more</a>
             </div>
             <div class="card">
-                <h3>Instant Analysis</h3>
-                <p>Quickly determine .</p>
+                <h3>Check out the top volunteers in Houston!</h3>
+                <p>Maybe you could be next...</p>
                 <a href="#">Learn more</a>
             </div>
         </div>
@@ -236,7 +265,7 @@
         <h2>User and Company Testimonials</h2>
         <p>Insights from users who have used it to connect to local volunteer opertunities</p>
         <div class="testimonial">
-            <img src=".jpg" alt="User Photo">
+            <img src="images/user1.jpg" alt="User Photo">
             <div class="content">
                 <h3>Emily Johnson</h3>
                 <p>Animal shelter volunteer from Prairie View A&M University</p>
