@@ -1,1 +1,234 @@
 // This page has useful advice/tips on volunteer happenings near you
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Hive: Volunteer Tips & Local Happenings</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #8736AA;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: white;
+      margin: 0 10px;
+    }
+
+    .logo img {
+      height: 70px;
+    }
+
+    /* ===== MAIN PAGE SECTION ===== */
+    .page-section {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .page-section h1 {
+      font-size: 36px;
+      color: #8736AA;
+      margin-bottom: 10px;
+    }
+
+    .page-section p {
+      font-size: 18px;
+      color: #555;
+      max-width: 800px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    /* ===== TIP CARDS GRID ===== */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto 50px;
+    }
+
+    .tip-card {
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      border: 3px solid #FFE863;
+      text-align: left;
+    }
+
+    .tip-card h3 {
+      color: #8736AA;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .tip-card p {
+      color: #444;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    /* ===== LOCAL OPPORTUNITIES SECTION ===== */
+    .local-section {
+      background-color: #ffffff;
+      border-top: 4px solid #8736AA;
+      padding: 40px 20px 60px;
+      text-align: center;
+    }
+
+    .local-section h2 {
+      font-size: 30px;
+      color: #8736AA;
+      margin-bottom: 10px;
+    }
+
+    .local-opps {
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: #fefefe;
+      border-radius: 10px;
+      border: 3px solid #FFE863;
+      padding: 30px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    .local-opps h3 {
+      color: #8736AA;
+      margin-bottom: 5px;
+      font-size: 20px;
+    }
+
+    .local-opps p {
+      margin: 0 0 20px;
+      font-size: 16px;
+      color: #555;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="navbar">
+    <div class="logo">
+      <img src="Logo.png" alt="The Hive Logo">
+    </div>
+
+    <div class="nav-links">
+      <a href="#">Sign up</a>
+      <a href="#">Features</a>
+      <a href="#">About Us</a>
+      <a href="#">Meet the Team</a>
+    </div>
+  </div>
+
+  <!-- ===== TIPS / ADVICE SECTION ===== -->
+  <section class="page-section">
+    <h1>Volunteer Tips & Local Happenings</h1>
+    <p>
+      Stay up-to-date with helpful advice, best practices, and upcoming volunteer opportunities near you.  
+      Whether you're new to volunteering or a community veteran, these tips will help you make the most 
+      of every experience!
+    </p>
+
+    <!-- === TIPS GRID === -->
+    <div class="tips-grid">
+
+      <div class="tip-card">
+        <h3>🌱 Start Small, Grow Big</h3>
+        <p>
+          Begin with shorter volunteer shifts or one-day events. Once you find what motivates you, increase 
+          your hours and explore more organizations.
+        </p>
+      </div>
+
+      <div class="tip-card">
+        <h3>📅 Stay Consistent</h3>
+        <p>
+          A little consistency goes a long way. Volunteering once a week or once a month helps organizations 
+          rely on you and track meaningful impact.
+        </p>
+      </div>
+
+      <div class="tip-card">
+        <h3>🤝 Meet Other Volunteers</h3>
+        <p>
+          Volunteering is social! Introduce yourself, share ideas, and build community connections that make 
+          your impact even stronger.
+        </p>
+      </div>
+
+      <div class="tip-card">
+        <h3>🐾 Follow Your Passions</h3>
+        <p>
+          Whether you love animals, gardening, tutoring, or serving meals — choose causes that matter to you 
+          for the most fulfilling experience.
+        </p>
+      </div>
+
+      <div class="tip-card">
+        <h3>📚 Stay Informed</h3>
+        <p>
+          Organizations often share updates, needs, and upcoming events. Stay connected via email lists or 
+          social media pages.
+        </p>
+      </div>
+
+      <div class="tip-card">
+        <h3>💛 Track Your Impact</h3>
+        <p>
+          Logging your hours helps you see your growth and unlocks recognition inside the Hive Leaderboard.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== LOCAL OPPORTUNITIES SECTION ===== -->
+  <section class="local-section">
+    <h2>Local Volunteer Opportunities Near You</h2>
+
+    <div class="local-opps">
+
+      <h3>🌿 Community Garden Day</h3>
+      <p>
+        Saturday 10–2pm — Assist with planting, watering, and prepping plots for fall harvest. Great for beginners!
+      </p>
+
+      <h3>🐶 Paws Animal Shelter Adoption Drive</h3>
+      <p>
+        Volunteers needed to greet visitors, walk pets, and help match animals with families.
+      </p>
+
+      <h3>🍽️ Houston Food Bank Family Night</h3>
+      <p>
+        Bring friends or family! Help sort donations and assemble meal boxes for local communities.
+      </p>
+
+      <h3>🏥 Children's Hospital Activity Hour</h3>
+      <p>
+        Read to kids, lead art activities, or help distribute care packages.
+      </p>
+
+    </div>
+
+  </section>
+
+</body>
+</html>
