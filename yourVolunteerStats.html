@@ -1,1 +1,405 @@
 // Volunteer can see history of events volunteered, volunteer hours, goals, animation of jar of honey being filled up
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Hive: My Volunteer Progress</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #8736AA;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: white;
+      margin: 0 10px;
+    }
+
+    .logo img {
+      height: 70px;
+    }
+
+    /* ===== MAIN PAGE SECTION ===== */
+    .page-section {
+      padding: 40px 20px 20px;
+      text-align: center;
+    }
+
+    .page-section h1 {
+      font-size: 36px;
+      color: #8736AA;
+      margin-bottom: 10px;
+    }
+
+    .page-section p {
+      font-size: 18px;
+      color: #555;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      line-height: 1.6;
+    }
+
+    /* ===== STATS GRID ===== */
+    .stats-grid {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .stat-card {
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      border: 3px solid #FFE863;
+      text-align: left;
+    }
+
+    .stat-card h3 {
+      font-size: 20px;
+      color: #8736AA;
+      margin-bottom: 8px;
+    }
+
+    .stat-card .number {
+      font-size: 26px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .stat-card p {
+      font-size: 14px;
+      color: #555;
+      margin: 0;
+    }
+
+    /* ===== HONEY JAR PROGRESS ===== */
+    .jar-section {
+      padding: 10px 20px 40px;
+      text-align: center;
+    }
+
+    .jar-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .jar-label {
+      font-size: 18px;
+      color: #333;
+    }
+
+    .honey-jar-container {
+      position: relative;
+      width: 180px;
+      height: 260px;
+    }
+
+    .jar-lid {
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 25px;
+      background-color: #8736AA;
+      border-radius: 10px 10px 3px 3px;
+    }
+
+    .honey-jar {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      height: 230px;
+      border-radius: 40px 40px 30px 30px;
+      border: 4px solid #8736AA;
+      background-color: #fff9dd;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .honey-fill {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #FFE863;
+      /* final fill level – this is your progress (e.g., 70% of goal) */
+      height: 70%;
+      animation: fillUp 2.5s ease-out forwards;
+    }
+
+    .jar-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: bold;
+      font-size: 20px;
+      color: #8736AA;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+    }
+
+    @keyframes fillUp {
+      from { height: 0; }
+      to   { height: 70%; }
+    }
+
+    .goal-caption {
+      font-size: 14px;
+      color: #555;
+    }
+
+    /* ===== HISTORY & GOALS SECTIONS ===== */
+    .bottom-sections {
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 25px;
+      padding: 0 20px;
+    }
+
+    .history-section,
+    .goals-section {
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      border: 3px solid #FFE863;
+    }
+
+    .history-section h2,
+    .goals-section h2 {
+      font-size: 22px;
+      color: #8736AA;
+      margin-bottom: 12px;
+    }
+
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .history-table th,
+    .history-table td {
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .history-table thead {
+      background-color: #f7f2ff;
+    }
+
+    .history-table tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .history-table tbody tr:nth-child(odd) {
+      background-color: #ffffff;
+    }
+
+    .goals-section ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .goals-section li {
+      margin-bottom: 10px;
+      font-size: 15px;
+      color: #444;
+    }
+
+    .goal-tag {
+      font-size: 12px;
+      font-weight: bold;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background-color: #FFE863;
+      color: #8736AA;
+      display: inline-block;
+      margin-left: 6px;
+    }
+
+    /* Simple responsiveness */
+    @media (max-width: 900px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .bottom-sections {
+        grid-template-columns: 1fr;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">
+      <img src="Logo.png" alt="The Hive Logo">
+    </div>
+
+    <div class="nav-links">
+      <a href="#">Sign up</a>
+      <a href="#">Features</a>
+      <a href="#">About Us</a>
+      <a href="#">Meet the Team</a>
+    </div>
+  </div>
+
+  <!-- ===== HEADER / INTRO ===== -->
+  <section class="page-section">
+    <h1>My Volunteer Progress</h1>
+    <p>
+      View your volunteer history, total hours, and goals — and watch your jar of honey fill up
+      as you make a difference in your community!
+    </p>
+
+    <!-- ===== TOP STATS ===== -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Total Hours Logged</h3>
+        <div class="number">34.5</div>
+        <p>Across all organizations you've volunteered with in the last 6 months.</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Events Completed</h3>
+        <div class="number">12</div>
+        <p>From food drives to animal care and community cleanups.</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Current Monthly Goal</h3>
+        <div class="number">50 hrs</div>
+        <p>You’re almost there — keep going and fill that honey jar!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HONEY JAR ANIMATION ===== -->
+  <section class="jar-section">
+    <div class="jar-wrapper">
+      <div class="jar-label">Honey Goal Tracker</div>
+
+      <div class="honey-jar-container">
+        <div class="jar-lid"></div>
+
+        <div class="honey-jar">
+          <!-- Adjust height in .honey-fill + % text to match actual progress -->
+          <div class="honey-fill"></div>
+          <div class="jar-text">70%</div>
+        </div>
+      </div>
+
+      <div class="goal-caption">
+        Based on 35 out of 50 goal hours completed this month.
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HISTORY & GOALS ===== -->
+  <section class="bottom-sections">
+    <!-- Event history -->
+    <div class="history-section">
+      <h2>Event History</h2>
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Event</th>
+            <th>Organization</th>
+            <th>Hours</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Jan 18, 2025</td>
+            <td>Weekend Food Sort</td>
+            <td>Houston Food Bank</td>
+            <td>4.0</td>
+          </tr>
+          <tr>
+            <td>Jan 11, 2025</td>
+            <td>Neighborhood Clean-Up</td>
+            <td>Memorial Park Conservancy</td>
+            <td>3.5</td>
+          </tr>
+          <tr>
+            <td>Dec 21, 2024</td>
+            <td>Holiday Pet Adoption</td>
+            <td>Paws Incorporated</td>
+            <td>5.0</td>
+          </tr>
+          <tr>
+            <td>Dec 07, 2024</td>
+            <td>Toy Drive Sorting</td>
+            <td>Houston Community Center</td>
+            <td>2.5</td>
+          </tr>
+          <tr>
+            <td>Nov 30, 2024</td>
+            <td>Family Serving Night</td>
+            <td>Houston Food Bank</td>
+            <td>4.0</td>
+          </tr>
+          <tr>
+            <td>Nov 16, 2024</td>
+            <td>Garden Build Day</td>
+            <td>Community Garden Project</td>
+            <td>3.0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Goals -->
+    <div class="goals-section">
+      <h2>My Goals</h2>
+      <ul>
+        <li>
+          Reach <strong>50 volunteer hours</strong> this month
+          <span class="goal-tag">In Progress</span>
+        </li>
+        <li>
+          Volunteer at <strong>3 different organizations</strong> this quarter
+          <span class="goal-tag">On Track</span>
+        </li>
+        <li>
+          Complete at least <strong>1 event per week</strong>
+          <span class="goal-tag">In Progress</span>
+        </li>
+        <li>
+          Lead a <strong>group volunteer event</strong> with friends or coworkers
+          <span class="goal-tag">Upcoming</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</body>
+</html>
