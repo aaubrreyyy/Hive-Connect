@@ -327,6 +327,115 @@
                 transform: translateY(2px) scaleY(0.8);
             }
         }
+                /* ===========================
+           EXTRA FLOATING BEES (4 more)
+           =========================== */
+        
+        /* Shared bee styling */
+        .bee {
+            position: fixed;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(
+                90deg,
+                #2f2a26 0 18%,
+                #ffd54a 18% 46%,
+                #2f2a26 46% 64%,
+                #ffd54a 64% 82%,
+                #2f2a26 82% 100%
+            );
+            box-shadow: 0 6px 10px rgba(0,0,0,0.25);
+            z-index: 999;
+            pointer-events: none;
+        }
+        
+        .bee::before,
+        .bee::after {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            top: -14px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            animation: wing-flap 0.4s ease-in-out infinite alternate;
+        }
+        
+        .bee::before { left: -3px; transform: rotate(-20deg); }
+        .bee::after  { right: -3px; transform: rotate(20deg); }
+        
+        @keyframes wing-flap {
+            from { transform: translateY(0) scaleY(1); }
+            to   { transform: translateY(2px) scaleY(0.8); }
+        }
+        
+        /* ============= Individual Bees ============= */
+        
+        /*** Bee 1 – Left to Right ***/
+        .bee1 {
+            top: 18vh;
+            left: -60px;
+            animation: bee1path 18s linear infinite;
+        }
+        
+        @keyframes bee1path {
+            0%   { transform: translateX(0) translateY(0); opacity: 0; }
+            5%   { opacity: 1; }
+            40%  { transform: translateX(50vw) translateY(-20px); }
+            80%  { transform: translateX(100vw) translateY(15px); }
+            100% { transform: translateX(125vw) translateY(0); opacity: 0; }
+        }
+        
+        /*** Bee 2 – Right to Left ***/
+        .bee2 {
+            top: 35vh;
+            right: -80px;
+            transform: scale(0.9);
+            animation: bee2path 22s linear infinite;
+        }
+        
+        @keyframes bee2path {
+            0%   { transform: translateX(0) translateY(0) scale(0.9); opacity: 0; }
+            10%  { opacity: 1; }
+            40%  { transform: translateX(-40vw) translateY(20px) scale(0.9); }
+            70%  { transform: translateX(-80vw) translateY(-25px) scale(0.9); }
+            100% { transform: translateX(-120vw) translateY(0) scale(0.9); opacity: 0; }
+        }
+        
+        /*** Bee 3 – Diagonal Upwards ***/
+        .bee3 {
+            top: 75vh;
+            left: -70px;
+            transform: scale(0.8);
+            animation: bee3path 26s linear infinite;
+        }
+        
+        @keyframes bee3path {
+            0%   { transform: translateX(0) translateY(0) scale(0.8); opacity: 0; }
+            10%  { opacity: 1; }
+            50%  { transform: translateX(55vw) translateY(-30vh) scale(0.8); }
+            100% { transform: translateX(110vw) translateY(-65vh) scale(0.8); opacity: 0; }
+        }
+        
+        /*** Bee 4 – Floating Zig-Zag ***/
+        .bee4 {
+            top: 55vh;
+            left: -60px;
+            transform: scale(0.75) rotate(-8deg);
+            animation: bee4path 24s ease-in-out infinite;
+        }
+        
+        @keyframes bee4path {
+            0%   { transform: translateX(0) translateY(0) rotate(-8deg) scale(0.75); opacity: 0; }
+            10%  { opacity: 1; }
+            25%  { transform: translateX(25vw) translateY(-25px) rotate(2deg) scale(0.75); }
+            50%  { transform: translateX(50vw) translateY(30px) rotate(-5deg) scale(0.75); }
+            75%  { transform: translateX(75vw) translateY(-15px) rotate(3deg) scale(0.75); }
+            100% { transform: translateX(110vw) translateY(0) rotate(-8deg) scale(0.75); opacity: 0; }
+        }
+
     </style>
 </head>
 <body>
