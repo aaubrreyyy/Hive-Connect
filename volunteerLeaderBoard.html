@@ -1,1 +1,188 @@
-// Volunteer Leaderboard Page:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Hive: Volunteer Leaderboard</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #8736AA;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: white;
+      margin: 0 10px;
+    }
+
+    .logo img {
+      height: 70px;
+    }
+
+    /* ===== LEADERBOARD SECTION ===== */
+    .leaderboard-section {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .leaderboard-section h1 {
+      font-size: 36px;
+      color: #8736AA;
+      margin-bottom: 10px;
+    }
+
+    .leaderboard-section p {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .leaderboard {
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      border: 3px solid #FFE863;
+    }
+
+    .leaderboard table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .leaderboard thead {
+      background-color: #8736AA;
+      color: white;
+    }
+
+    .leaderboard th,
+    .leaderboard td {
+      padding: 14px 18px;
+      text-align: left;
+      font-size: 17px;
+    }
+
+    .leaderboard tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .leaderboard tbody tr:nth-child(odd) {
+      background-color: #ffffff;
+    }
+
+    /* Highlight the #1 spot */
+    .leaderboard tbody tr:first-child {
+      background-color: #FFE863;
+      font-weight: bold;
+    }
+
+    .badge {
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      background-color: #FFE863;
+      color: #8736AA;
+      display: inline-block;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="navbar">
+    <div class="logo">
+      <img src="Logo.png" alt="The Hive Logo">
+    </div>
+
+    <div class="nav-links">
+      <a href="#">Sign up</a>
+      <a href="#">Features</a>
+      <a href="#">About Us</a>
+      <a href="#">Meet the Team</a>
+    </div>
+  </div>
+
+  <!-- ===== LEADERBOARD PAGE ===== -->
+  <section class="leaderboard-section">
+    <h1>Volunteer Leaderboard</h1>
+    <p>Track your progress and see how you stack up against other volunteers!</p>
+
+    <div class="leaderboard">
+      <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Volunteer</th>
+            <th>Organization</th>
+            <th>Hours Logged</th>
+            <th>Recognition</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <!-- Update these rows with real database values later -->
+          <tr>
+            <td>1</td>
+            <td>Monica R.</td>
+            <td>Paws Incorporated</td>
+            <td>42</td>
+            <td><span class="badge">Top Volunteer</span></td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td>James T.</td>
+            <td>Houston Food Bank</td>
+            <td>35</td>
+            <td><span class="badge">Top 3</span></td>
+          </tr>
+
+          <tr>
+            <td>3</td>
+            <td>Ariana G.</td>
+            <td>Community Garden</td>
+            <td>31</td>
+            <td><span class="badge">Top 3</span></td>
+          </tr>
+
+          <tr>
+            <td>4</td>
+            <td>Daniel M.</td>
+            <td>Children’s Hospital</td>
+            <td>24</td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>5</td>
+            <td>Lena S.</td>
+            <td>Senior Center</td>
+            <td>20</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+
+</body>
+</html>
+
