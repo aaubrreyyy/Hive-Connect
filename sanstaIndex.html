@@ -240,7 +240,7 @@
             transform: translateY(0);
         }
 
-        /* 🐝 FLOATING BEE ANIMATION ACROSS THE PAGE */
+        /* 🐝 ORIGINAL FLOATING PAGE BEE */
         .page-bee {
             position: fixed;
             top: 18%;
@@ -327,144 +327,45 @@
                 transform: translateY(2px) scaleY(0.8);
             }
         }
-    </style>
-</head>
-<body>
 
-    <div class="navbar">
-        <div class="logo">
-            <img src="images/logo.png" width="100" height="5" alt="Logo" style="height: 70px; border-radius: 30%; object-fit: cover;">
-        </div>
-        <h1 style="color: white; font-weight:bold">The Hive</h1>
-        <div class="nav-links">
-            <a href="Signup Page.html" class="mybtn">Sign up </a>
-            <a href="#" class="mybtn">Events</a>
-            <a href="#" class="mybtn">About Us</a>
-            <a href="TheHiveMeetTheTeam.html" class="mybtn">Meet the Team</a>
-        </div>
-    </div>
-    
-    <div class="container">
-        <div class="text-section">
-            <h1>The Helping Hive</h1>
-            
-            <p class="slide-in"> The Hive’s mission is to connect people across Houston through meaningful 
-                volunteer opportunities. We aim to make it easier for individuals to give back to their
-                 communities and for local organizations to find dedicated volunteers. By fostering 
-                 collaboration and service, The Hive helps build stronger, more connected neighborhoods.</p>
-            <h3 class="slide-in">Sign up for open positions. Get real credit on-campus. Help your community now.</h3>
-            <button class="sign-up-btn">Sign up today</button>
-        </div>
-        <div class="image-section">
-            <img src="images/volunteer.jpg" width="500" height="200"   alt="Volunteer App Screens">
-        </div>
-    </div>
+        /* ===========================
+           EXTRA FLOATING BEES (4 more)
+           =========================== */
 
-    <div class="yellow-strip">
-        <h2>Explore over 10+ ways to volunteer today!</h2>
-       
-        <div class="icon-container">
-            <img src="images/gardenicon.jpg" alt=" icon 1" class="icon">
-            <img src="images/foodbank.jpg" alt=" icon 2" class="icon">
-            <img src="images/animalshleter.png" alt=" icon 3" class="icon">
-            <img src="images/hospital.webp" alt=" icon 4" class="icon">
-        </div>
-    </div>
+        /* Shared bee styling */
+        .bee {
+            position: fixed;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(
+                90deg,
+                #2f2a26 0 18%,
+                #ffd54a 18% 46%,
+                #2f2a26 46% 64%,
+                #ffd54a 64% 82%,
+                #2f2a26 82% 100%
+            );
+            box-shadow: 0 6px 10px rgba(0,0,0,0.25);
+            z-index: 999;
+            pointer-events: none;
+        }
 
-    <div class="green-block">
-        <div class="template-cards">
-            <div class="card fade-section">
-                <h3>Popular Volunteer spots in Houston!</h3>
-                <p>Get clear explanations and easy sign up options.</p>
-                <a href="#">Learn more</a>
-            </div>
-            <div class="card fade-section">
-                <h3>Check out Volunteer of the month</h3>
-                <a href="#">Leaderboard</a>
-            </div>
-        
-            <div class="card fade-section">
-                <h3>Sustainable Connections</h3>
-                <p>Receive daily tips on volunteer happenings near you.</p>
-                <a href="#">Learn more</a>
-            </div>
-            <div class="card fade-section">
-                <h3>Your Volunteer Stats</h3>
-                <p>See how much you've helped Houston!</p>
-                <a href="#">Stats</a>
-            </div>
-            <div class="card fade-section">
-                <h3>Check out the top volunteers in Houston!</h3>
-                <p>Maybe you could be next...</p>
-                <a href="#">Leaderboard</a>
-            </div>
-        </div>
-    </div>
+        .bee::before,
+        .bee::after {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            top: -14px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            animation: wing-flap 0.4s ease-in-out infinite alternate;
+        }
 
-    <div class="testimonial-section">
-        <h2>User and Company Testimonials</h2>
-        <p>Insights from users who have used it to connect to local volunteer opertunities</p>
+        .bee::before { left: -3px; transform: rotate(-20deg); }
+        .bee::after  { right: -3px; transform: rotate(20deg); }
 
-        <div class="testimonial fade-section">
-            <img src="images/user1.jpg" alt="User Photo">
-            <div class="content fade-section">
-                <h3>Emily Johnson</h3>
-                <p>Animal shelter volunteer from Prairie View A&M University:</p>
-                <p>"I had been wanting to volunteer and connect with my local community, 
-                    so glad I was able to get to work with the cute puppies!!"</p>
-            </div>
-        </div>
-
-        <br>
-
-        <div class="testimonial fade-section">
-            <img src="images/user2.jpg" alt="User Photo">
-            <div class="content fade-section">
-                <h3>Taylor Coleman</h3>
-                <p>Manager at People for Plants:</p>
-                <p>"We've been looking for more volunteers to help us out with taking care of our plants. Now we've been able to 
-                    gather more volunteers from the local Houston area than ever!"</p>
-            </div>   
-        </div>
-
-        <br>
-
-        <div class="testimonial fade-section">
-            <img src="images/user3.jpg" alt="User Photo">
-            <div class="content fade-section">
-                <h3>James Michaelson</h3>
-                <p><bold>Owner of Food 4 Everyone:</bold></p>
-                <p>"The Helping Hive has helped us gain attention and bring in more volunteers to help give out food to people in need!"</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="footer">
-        <h2>The #1 volunteer hookup</h2>
-        <p>As endorsed by top ...</p>
-        <h6>*Not a factual claim (currently).</h6>
-    </div>
-
-    <!-- 🐝 Floating bee element -->
-    <div class="page-bee">
-        <div class="page-bee-eye"></div>
-    </div>
-
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("show");
-                } else {
-                    entry.target.classList.remove("show"); 
-                }
-            });
-        });
-
-        document.querySelectorAll(".fade-section").forEach((el) => {
-            observer.observe(el);
-        });
-    </script>
-
-</body>
-</html>
+        @keyframes wing-flap {
+            from { transfor
