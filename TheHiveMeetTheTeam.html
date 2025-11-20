@@ -1,170 +1,499 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Hive: Volunteer App</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us - CareConnect</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --bg-color: transparent;
+      --text-color: #333;
+      --accent-color: #8736AA;
+      --background-image: url('https://images.unsplash.com/photo-1626285094816-39f688104ce0?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+      }
+
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
       margin: 0;
       padding: 0;
-      margin-bottom: 1px;
-      background-color: #f5f5f5;
+      background: var(--background-image) no-repeat center center fixed;
+      background-size: cover;
+      background-attachment: fixed;
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
     }
 
-    /* MATCH HEADER STYLE FROM MAIN PAGE */
+    body.dark-mode {
+      background-color: #333;
+      color: #f5f5f5;
+      background-image: none;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0px 20px;
-      background-color: #FFE863; /* golden header */
-      box-shadow: 0 200px 40px rgba(0, 0, 0, 0.1);
+      background-color: var(--accent-color);
+      padding: 20px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    .navbar a {
-      text-decoration: none;
-      color: white;
-      margin: 0 10px;
-    }
-
-    /* BUTTON STYLE FROM MAIN PAGE */
-    .mybtn {
-      display: inline-block;
-      padding: 10px 15px;
-      background-color: rgb(242, 224, 167);
-      text-decoration: none;
-      color: black;
-      border-radius: 8px;
-    }
-
-    .mybtn:hover {
-      background-color: #8736AA;
-      color: white;
-    }
-
-    .container {
+    .navbar-left {
       display: flex;
-      justify-content: center; 
       align-items: center;
-      flex-direction: column;
-      padding: 50px 20px;
+      gap: 15px;
     }
 
-    .text-section {
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .logo {
+      height: 50px;
+      width: auto;
+    }
+
+    .site-name {
+      font-size: 20px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .navbar a,
+    .navbar button {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    .navbar a:hover,
+    .navbar button:hover {
+      color: #a3b18a;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: white;
+      transition: color 0.3s ease;
+    }
+
+    body.dark-mode .theme-toggle {
+      color: #f5f5f5;
+    }
+
+    .glass-panel {
+      backdrop-filter: blur(5px);
+      background: rgba(255, 255, 255, 0.2);
+      padding: 30px;
+      margin: 50px auto;
+      max-width: 900px;
+      border-radius: 15px;
       text-align: center;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #333;
     }
 
-    .text-section h1 {
-      font-size: 36px;
-      margin-bottom: 20px;
+    h1, h2 {
+      text-align: center;
+      margin-top: 20px;
     }
 
-    .text-section img {
-      display: block;
-      margin: 0 auto;
-      max-width: 60%;
-      height: auto;
+    #auto-type {
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 30px;
+      min-height: 40px;
+    }
+
+    .chatbot-bubble {
+      background: var(--accent-color);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 20px;
+      margin: 40px auto 20px auto;
+      text-align: center;
+      width: fit-content;
+      animation: slideIn 1s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .team {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+      padding-bottom: 60px;
+    }
+
+    .team-member {
+      background-color: rgba(255, 255, 255, 0.9);
       border-radius: 10px;
-    }
-
-    .text-section p {
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-
-    .yellow-strip {
-      background-color: #FFE863;
+      width: 220px;
       padding: 20px;
       text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+      cursor: pointer;
     }
 
-    .yellow-strip h2,
-    .yellow-strip p {
-      color: white;
+    .team-member:hover {
+      transform: translateY(-8px);
     }
 
-    .yellow-strip .icon {
+    .team-member img {
       width: 100px;
       height: 100px;
       object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 3px solid var(--accent-color);
     }
 
-    .icon-container {
+    .team-member h3 {
+      margin: 10px 0 5px;
+      font-size: 20px;
+    }
+
+    .team-member p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    .social-icons {
+      margin-top: 10px;
+    }
+
+    .social-icons a {
+      color: var(--accent-color);
+      font-size: 22px;
+      margin: 0 8px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #000;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar-right {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 10px;
+      }
+
+      .team {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .team-member {
+        width: 90%;
+      }
+    }
+    /* Header/footer styles copied from AboutUs for consistency */
+    :root { --brand: #8736AA; --header-height: 110px; --footer-height: 84px; }
+    .navbar {
+      position: relative;
       display: flex;
-      justify-content: center;
-      gap: 10px;
-      background-color: #FFE863;
-      padding: 0px;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 48px;
+      background-color: var(--brand);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.14);
+      min-height: var(--header-height);
+      box-sizing: border-box;
     }
-
-    /* Footer matching main site's footer styling */
-    .footer {
+    .logo { flex: 0 0 auto; z-index: 2; }
+    .logo img { height: 72px; display: block; }
+    .navbar h1 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      color: #fff;
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1;
+      z-index: 1;
+      pointer-events: none;
+      white-space: nowrap;
       text-align: center;
-      color: #8736AA;
-      padding: 20px;
-      width: 100%;
-      background-color: transparent;
+    }
+    /* Playful title styling */
+    .navbar h1 .site-title {
+      font-family: 'Fredoka One', 'Open Sans', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      font-size: 30px;
+      background: linear-gradient(90deg, #FFD166 0%, #FFB86B 50%, #FF7A66 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 0.6px;
+      display: inline-block;
+      vertical-align: middle;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.16);
+      -webkit-text-stroke: 0.5px rgba(0,0,0,0.06);
+      pointer-events: auto;
+    }
+    .title-badge {
+      width: 64px;
+      height: 64px;
+      margin-left: 12px;
+      vertical-align: middle;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18));
+      transform: translateY(-4px);
+      pointer-events: none;
+    }
+    .nav-links { margin-left: auto; flex: 0 0 auto; display: flex; gap: 12px; align-items: center; justify-content: flex-end; z-index: 2; }
+    .nav-links a { color: #000000; text-decoration: none; padding: 10px 14px; border-radius: 8px; font-weight: 600; font-size: 15px; background-color: #ffffff; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+    .nav-links a:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0,0,0,0.08); }
+    .nav-links .sign-up { padding: 10px 16px; font-weight: 700; }
+    .footer { background-color: var(--brand); color: #fff; text-align: center; padding: 22px 16px; font-size: 15px; min-height: var(--footer-height); box-sizing: border-box; }
+    @media (max-width: 520px) {
+      :root { --header-height: 78px; }
+      .logo img { height: 56px; }
+      .navbar { padding: 14px 18px; }
+      .navbar h1 .site-title { font-size: 20px; }
+      .title-badge { width: 44px; height: 44px; }
     }
   </style>
 </head>
-
 <body>
-
-  <!-- UPDATED NAVBAR WITH BUTTON BOXES -->
-  <div class="navbar">
+  <header class="navbar">
     <div class="logo">
-      <img src="images/logo.png" alt="Logo" style="height: 70px;">
+      <img src="images/logo.png" alt="Hive Connect logo" />
     </div>
 
-    <div class="nav-links">
-      <a href="Signup Page.html" class="mybtn">Sign up</a>
-      <a href="#" class="mybtn">About Us</a>
-      <a href="TheHiveMeetTheTeam.html" class="mybtn">Meet the Team</a>
+    <h1>
+      <span class="site-title">The Hive</span>
+      <svg class="title-badge" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="beeBodyGrad" x1="0" x2="1">
+            <stop offset="0%" stop-color="#FFD166" />
+            <stop offset="100%" stop-color="#FFB347" />
+          </linearGradient>
+          <filter id="beeShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000" flood-opacity="0.18" />
+          </filter>
+        </defs>
+        <g filter="url(#beeShadow)" transform="translate(0,0)">
+          <path d="M24 20 C14 10, 6 8, 14 28 C20 40, 34 34, 24 20 Z" fill="#FFFFFF" opacity="0.85" stroke="#F0F0F0" stroke-width="0.6" />
+          <path d="M44 20 C54 10, 62 8, 54 28 C48 40, 34 34, 44 20 Z" fill="#FFFFFF" opacity="0.85" stroke="#F0F0F0" stroke-width="0.6" />
+          <ellipse cx="34" cy="34" rx="14" ry="18" fill="url(#beeBodyGrad)" />
+          <path d="M21 38 C28 42, 40 42, 47 38" stroke="#2b2b2b" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.95" />
+          <path d="M21 44 C28 48, 40 48, 47 44" stroke="#2b2b2b" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.95" />
+          <path d="M30 50 L38 50 L34 58 Z" fill="#2b2b2b" opacity="0.95" />
+          <circle cx="30" cy="26" r="2.6" fill="#111" />
+          <circle cx="29.2" cy="25.2" r="0.7" fill="#fff" opacity="0.95" />
+          <circle cx="38" cy="26" r="2.6" fill="#111" />
+          <circle cx="38.8" cy="25.2" r="0.7" fill="#fff" opacity="0.95" />
+          <path d="M30 33 C32 35, 36 35, 38 33" stroke="#2b2b2b" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.95" />
+          <path d="M28 18 C24 12, 18 12, 16 16" stroke="#2b2b2b" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.9" />
+          <path d="M38 18 C42 12, 48 12, 50 16" stroke="#2b2b2b" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.9" />
+        </g>
+      </svg>
+
+    </h1>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="AboutUs.html">About Us</a>
+      <a href="TheHiveMeetTheTeam.html">Meet the Team</a>
+      <a href="SignupPage.html" class="sign-up">Sign up</a>
+    </nav>
+  </header>
+
+  <div class="chatbot-bubble">Hello Panther! Welcome to Hive Connect!</div>
+  <div id="auto-type"></div>
+
+
+  <!-- Team Section -->
+  <h2>Meet the Team</h2>
+  <div class="team">
+    <div class="team-member">
+      <img src="images/KirstenRedmonHS.PNG" alt="Kirsten Redmon" />
+      <h3>Kirsten Redmon</h3>
+      <p>Team Lead</p>
+      <div class="social-icons">
+        <a href="https://github.com/KirstenR26" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:kredmon@pvamu.edu"><i class="fas fa-envelope"></i></a>
+      </div>
     </div>
-  </div>
 
-  <div class="container">
-    <div class="text-section">
-      <h1>Meet The Team</h1>
-      <img src="images/Meet The Team.JPG" alt="Meet The Team Photo">
-      <p>.</p>
+    <div class="team-member">
+      <img src="images/Professional Headshot.jpg" alt="Aubrey Lister" />
+      <h3>Aubrey Lister</h3>
+      <p>Lead Front-end Developer</p>
+      <div class="social-icons">
+        <a href="https://linkedin.com/in/AubreyLister" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/AubreyLister" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:aubreyylisterr@gmail.com"><i class="fas fa-envelope"></i></a>
+      </div>
     </div>
-  </div>
 
-  <div class="yellow-strip">
-    <h2>Explore the many ways to volunteer today!</h2>
-    <p></p>
-    <div class="icon-container">
-      <img src="images/gardenicon.jpg" alt="icon 1" class="icon">
-      <img src="images/foodbank.jpg" alt="icon 2" class="icon">
-      <img src="images/animalshleter.png" alt="icon 3" class="icon">
-      <img src="images/hospital.webp" alt="icon 4" class="icon">
+    <div class="team-member">
+      <img src="images/Azeil.png" alt="Azeil Dillon" />
+      <h3>Azeil Dillon</h3>
+      <p>Research Analyst</p>
+      <div class="social-icons">
+        <a href="https://linkedin.com/in/azeildillon" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:adillon1@pvamu.edu"><i class="fas fa-envelope"></i></a>
+      </div>
     </div>
+
+    <div class="team-member">
+      <img src="images/DandreLeagueHS.jpeg" alt="Dandre League" />
+      <h3>Dandre League</h3>
+      <p>Front-end Developer</p>
+      <div class="social-icons">
+        <a href="https://linkedin.com/in/dandreleague" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/dandreleague" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:dleague@pvamu.edu"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+
+    <div class="team-member">
+      <img src="images/SanstaCantareroHS.jpeg" alt="Sansta Cantarero" />
+      <h3>Sansta Cantarero</h3>
+      <p>Front-end Developer</p>
+      <div class="social-icons">
+        <a href="https://linkedin.com/in/sansta-cantarero-14724626b" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/sanstanicole" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:sanstacantarero@gmail.com"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+
+    <div class="team-member">
+      <img src="images/TrinityValentineHS.JPEG" alt="Trinity Valentine" />
+      <h3>Trinity Valentine</h3>
+      <p>Front-end Developer</p>
+      <div class="social-icons">
+        <a href="https://linkedin.com/in/LindseyLittlejohn" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/LindseyLittlejohn" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:someone@example.com"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+
+    <div class="team-member">
+      <img src="images/KhaliylPetersonHS.jpg" alt="Khaliyl Peterson" />
+      <h3>Khaliyl Peterson</h3>
+      <p>Lead Back-end Developer</p>
+      <div class="social-icons">
+        <a href="https://linkedin.com/in/khaliyl-peterson-43899a220" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/LindseyLittlejohn" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:kpeterson9@pvamu.edu"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+
+    <div class="team-member">
+      <img src="images/KhaliylPetersonHS.jpg" alt="Kamil " />
+      <h3>Khaliyl Peterson</h3>
+      <p>Lead Back-end Developer</p>
+      <div class="social-icons">
+        <a href="https://linkedin.com/in/khaliyl-peterson-43899a220" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/LindseyLittlejohn" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:kpeterson9@pvamu.edu"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Optional: You can add the footer text from main page if needed -->
-  <div class="footer">
-    <h2>The #1 volunteer hookup</h2>
-    <p>As endorsed by top ...</p>
-    <h6>*Not a factual claim (currently).</h6>
-  </div>
+  <footer class="footer">
+    <h2>The #1 Volunteer Connection Spot</h2>
+    <p>Gain volunteer hours!</p>
+  </footer>
 
+  <!-- Scripts -->
+  <script>
+    // Auto typing effect
+    const text = "Hive Connect makes volunteering natural, informative, and friendly.";
+    let index = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+      const typingElement = document.getElementById("auto-type");
+      if (!typingElement) return;
+
+      if (!isDeleting) {
+        typingElement.innerHTML = text.substring(0, index + 1);
+        index++;
+        if (index === text.length) {
+          isDeleting = true;
+          setTimeout(typeEffect, 2000);
+          return;
+        }
+      } else {
+        typingElement.innerHTML = text.substring(0, index - 1);
+        index--;
+        if (index === 0) {
+          isDeleting = false;
+        }
+      }
+      setTimeout(typeEffect, isDeleting ? 30 : 50);
+    }
+
+    typeEffect();
+
+    // Theme toggle logic
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const icon = darkModeToggle.querySelector('i');
+    const body = document.body;
+
+    function setDarkMode(enabled) {
+      if (enabled) {
+        body.classList.add('dark-mode');
+        icon.classList.replace('fa-moon', 'fa-sun');
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        body.classList.remove('dark-mode');
+        icon.classList.replace('fa-sun', 'fa-moon');
+        localStorage.removeItem('darkMode');
+      }
+    }
+
+    if (localStorage.getItem('darkMode') === 'enabled') {
+      setDarkMode(true);
+    }
+
+    darkModeToggle.addEventListener('click', () => {
+      setDarkMode(!body.classList.contains('dark-mode'));
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
