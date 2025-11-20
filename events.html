@@ -1,1 +1,749 @@
-<h1>TE AMO</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Hive: Volunteer Events</title>
+  <style>
+    /* 🍯 HONEYCOMB + THEME TOKENS */
+    :root {
+      --honeycomb: url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23f2c94c' stroke-width='1.2'%3E%3Cpolygon points='30,2 58,16 58,36 30,50 2,36 2,16'/%3E%3C/g%3E%3C/svg%3E");
+      --page-bg: #fffdf3;
+      --text-main: #161615;
+      --accent-purple: #8736AA;
+      --accent-yellow: #FFE863;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --honeycomb: url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23f9e79f' stroke-width='1.2'%3E%3Cpolygon points='30,2 58,16 58,36 30,50 2,36 2,16'/%3E%3C/g%3E%3C/svg%3E");
+        --page-bg: #1b130c;
+        --text-main: #fdf5e6;
+      }
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--text-main);
+      background-color: var(--page-bg);
+      background-image:
+        radial-gradient(circle at top, rgba(255, 225, 150, 0.9), rgba(255, 253, 243, 0.95) 55%, var(--page-bg) 100%),
+        var(--honeycomb);
+      background-size: 100% 100%, 120px;
+      background-attachment: fixed;
+    }
+
+    /* Navbar (similar to main page) */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      background-color: var(--accent-yellow);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar img {
+      height: 70px;
+      border-radius: 30%;
+      object-fit: cover;
+    }
+
+    .navbar h1 {
+      color: white;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      margin: 0 8px;
+      display: inline-block;
+      padding: 10px 15px;
+      border-radius: 8px;
+      background-color: rgb(242, 224, 167);
+      color: black;
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: var(--accent-purple);
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    /* Page layout */
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .hero-text {
+      max-width: 580px;
+    }
+
+    .hero-text h2 {
+      margin: 0 0 10px;
+      font-size: 32px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-text p {
+      margin: 0 0 12px;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    .hero-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #fff6cf;
+      border: 1px solid #f2dd90;
+      font-size: 13px;
+      margin-top: 6px;
+    }
+
+    .hero-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .filter-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid #f0d792;
+      background: #fffaf0;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .filter-pill.active {
+      background: var(--accent-purple);
+      color: #fff;
+      border-color: var(--accent-purple);
+    }
+
+    .hero-image {
+      flex: 0 0 260px;
+      max-width: 300px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image-inner {
+      border-radius: 12px;
+      background: linear-gradient(145deg, #ffe9b8, #ffd56b);
+      padding: 18px;
+      text-align: center;
+      color: #5a4210;
+      font-size: 14px;
+    }
+
+    .hero-jar {
+      width: 90px;
+      height: 110px;
+      border-radius: 40px 40px 25px 25px;
+      border: 2px solid #e0c28e;
+      background: #fff9e8;
+      margin: 0 auto 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-jar::before {
+      content: "";
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 18px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #f4c253, #e1a921);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    }
+
+    .hero-jar-fill {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      background: linear-gradient(180deg, #ffd467, #f4b41a);
+      box-shadow: inset 0 6px 10px rgba(255, 255, 255, 0.6);
+    }
+
+    .hero-bee {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(
+        90deg,
+        #2f2a26 0 18%,
+        #ffd54a 18% 46%,
+        #2f2a26 46% 64%,
+        #ffd54a 64% 82%,
+        #2f2a26 82% 100%
+      );
+      box-shadow: 0 4px 8px rgba(0,0,0,0.18);
+      animation: hero-bee-bob 2.5s ease-in-out infinite;
+    }
+
+    .hero-bee::before,
+    .hero-bee::after {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      top: -10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .hero-bee::before {
+      left: -1px;
+      transform: rotate(-18deg);
+    }
+
+    .hero-bee::after {
+      right: -1px;
+      transform: rotate(18deg);
+    }
+
+    @keyframes hero-bee-bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    /* Layout for main content */
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(280px, 1.1fr);
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Events list */
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
+      padding: 18px 18px 20px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.10);
+      border: 1px solid #f2e0b8;
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card h3 span.icon {
+      font-size: 22px;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .event-card {
+      background: #fffdf7;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #f4ddaa;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .event-image {
+      height: 150px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .event-tag {
+      position: absolute;
+      bottom: 8px;
+      left: 10px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 11px;
+      border: 1px solid #f1d28e;
+    }
+
+    .event-body {
+      padding: 12px 14px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .event-title {
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .event-meta {
+      font-size: 13px;
+      color: #6b5a3a;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .event-description {
+      font-size: 13px;
+      color: #493825;
+      margin-top: 4px;
+    }
+
+    .event-actions {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .event-button {
+      border: none;
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 13px;
+      cursor: pointer;
+      background: var(--accent-purple);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease;
+      box-shadow: 0 3px 8px rgba(135,54,170,0.35);
+    }
+
+    .event-button:hover {
+      background: #6b2987;
+      transform: translateY(-1px);
+    }
+
+    .event-button:disabled {
+      background: #d2bfdc;
+      box-shadow: none;
+      cursor: default;
+      transform: none;
+    }
+
+    .event-pill {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid #e1d4ff;
+      background: #f5f1ff;
+      color: #4e3f84;
+      white-space: nowrap;
+    }
+
+    /* My events sidebar */
+    .my-events {
+      position: sticky;
+      top: 80px;
+    }
+
+    .my-events-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 360px;
+      overflow: auto;
+    }
+
+    .my-events-empty {
+      font-size: 13px;
+      color: #7a6a4d;
+      background: #fff7de;
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+
+    .my-event-item {
+      background: #fffdf5;
+      border-radius: 12px;
+      padding: 9px 11px;
+      border: 1px solid #f1ddaa;
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .my-event-title {
+      font-weight: 600;
+    }
+
+    .my-event-meta {
+      font-size: 12px;
+      color: #6b5a3a;
+    }
+
+    .my-events-subtitle {
+      font-size: 12px;
+      color: #7a6a4d;
+      margin-bottom: 8px;
+    }
+
+    /* Cute tiny bees in headings */
+    .bee-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #fff8d9;
+      border: 1px solid #f1dd9a;
+      font-size: 11px;
+      color: #7a5a18;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">
+      <img src="images/logo.png" alt="The Hive logo">
+    </div>
+    <h1>The Hive</h1>
+    <div class="nav-links">
+      <!-- Adjust hrefs to match your actual file names -->
+      <a href="index.html">Home</a>
+      <a href="TheHiveEvents.html">Events</a>
+      <a href="Signup Page.html">Sign up</a>
+      <a href="TheHiveMeetTheTeam.html">Meet the Team</a>
+    </div>
+  </div>
+
+  <main class="page">
+    <!-- Hero section -->
+    <section class="hero">
+      <div class="hero-text">
+        <h2>Find Events Near You <span>🐝</span></h2>
+        <p>
+          Browse upcoming volunteer opportunities around Houston and beyond.
+          Sign up with one click and keep track of all the events you’ve joined in one place.
+        </p>
+        <div class="hero-highlight">
+          <span>🍯</span>
+          <span>Each event adds more honey to your impact jar.</span>
+        </div>
+
+        <div class="hero-filters">
+          <button class="filter-pill active" data-filter="all">All</button>
+          <button class="filter-pill" data-filter="outdoors">Outdoors</button>
+          <button class="filter-pill" data-filter="animals">Animals</button>
+          <button class="filter-pill" data-filter="community">Community</button>
+          <button class="filter-pill" data-filter="food">Food Support</button>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <div class="hero-image-inner">
+          <div class="hero-jar">
+            <div class="hero-jar-fill" id="heroJarFill"></div>
+          </div>
+          <div><strong id="eventsCount">0</strong> events available this month.</div>
+          <div style="margin-top:4px;font-size:12px;">Sign up to see your jar fill with impact.</div>
+        </div>
+        <div class="hero-bee"></div>
+      </div>
+    </section>
+
+    <section class="layout">
+      <!-- Left: events list -->
+      <section class="card">
+        <h3>
+          <span class="icon">📍</span>
+          Volunteer Events Near You
+          <span class="bee-chip">🐝 Filter &amp; sign up</span>
+        </h3>
+
+        <div class="events-grid" id="eventsGrid">
+          <!-- Event cards injected here -->
+        </div>
+      </section>
+
+      <!-- Right: my events sidebar -->
+      <aside class="card my-events">
+        <h3>
+          <span class="icon">🍯</span>
+          My Signed-Up Events
+        </h3>
+        <p class="my-events-subtitle">
+          These are the events you’ve joined. You can show this list at check-in.
+        </p>
+        <ul class="my-events-list" id="myEventsList">
+          <!-- Signed-up events go here -->
+        </ul>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    // Simple mock events data
+    const eventsData = [
+      {
+        id: "garden-cleanup",
+        title: "Community Garden Clean-Up",
+        date: "Sat • Dec 7 • 9:00 AM – 12:00 PM",
+        location: "Sunrise Community Garden, Houston, TX",
+        category: "outdoors",
+        tag: "Outdoors",
+        image: "images/events/garden.jpg",
+        description: "Help weed, plant, and water the neighborhood garden to keep it thriving year-round."
+      },
+      {
+        id: "food-bank",
+        title: "Food Bank Sorting & Packing",
+        date: "Thu • Dec 12 • 5:30 PM – 8:00 PM",
+        location: "Houston Food Share Center, Houston, TX",
+        category: "food",
+        tag: "Food Support",
+        image: "images/events/foodbank.jpg",
+        description: "Sort canned goods and pack boxes to support local families facing food insecurity."
+      },
+      {
+        id: "animal-shelter",
+        title: "Animal Shelter Play & Care",
+        date: "Sun • Dec 15 • 11:00 AM – 2:00 PM",
+        location: "Paws & Claws Shelter, Cypress, TX",
+        category: "animals",
+        tag: "Animals",
+        image: "images/events/animalshelter.jpg",
+        description: "Walk dogs, play with cats, and help with light cleaning at a local animal shelter."
+      },
+      {
+        id: "park-cleanup",
+        title: "Riverside Park Cleanup Day",
+        date: "Sat • Dec 21 • 8:30 AM – 11:30 AM",
+        location: "Riverside Park, Houston, TX",
+        category: "outdoors",
+        tag: "Outdoors",
+        image: "images/events/park.jpg",
+        description: "Join other volunteers to pick up litter and make the park sparkle again."
+      },
+      {
+        id: "senior-game-night",
+        title: "Senior Center Game Night",
+        date: "Fri • Dec 20 • 6:00 PM – 8:30 PM",
+        location: "Golden Years Center, Houston, TX",
+        category: "community",
+        tag: "Community",
+        image: "images/events/seniorcenter.jpg",
+        description: "Play board games and spend time with seniors who love good conversation and company."
+      },
+      {
+        id: "toy-drive",
+        title: "Holiday Toy Sorting & Wrapping",
+        date: "Mon • Dec 23 • 4:00 PM – 7:00 PM",
+        location: "Hope Warehouse, Houston, TX",
+        category: "community",
+        tag: "Community",
+        image: "images/events/toydrive.jpg",
+        description: "Help organize donated toys and wrap gifts for local kids this holiday season."
+      }
+    ];
+
+    // In-memory + localStorage list of signed-up events
+    const SIGNUP_STORAGE_KEY = "hiveSignedUpEvents";
+    let signedUpIds = [];
+
+    function loadSignedUps() {
+      try {
+        const stored = localStorage.getItem(SIGNUP_STORAGE_KEY);
+        if (stored) {
+          signedUpIds = JSON.parse(stored);
+        }
+      } catch (e) {
+        signedUpIds = [];
+      }
+    }
+
+    function saveSignedUps() {
+      try {
+        localStorage.setItem(SIGNUP_STORAGE_KEY, JSON.stringify(signedUpIds));
+      } catch (e) {
+        // ignore if storage not available
+      }
+    }
+
+    function isSignedUp(id) {
+      return signedUpIds.includes(id);
+    }
+
+    function handleSignUp(id) {
+      if (!isSignedUp(id)) {
+        signedUpIds.push(id);
+        saveSignedUps();
+        renderEvents();
+        renderMyEvents();
+        updateHeroJar();
+      }
+    }
+
+    // Render events list
+    function renderEvents(filter = "all") {
+      const grid = document.getElementById("eventsGrid");
+      grid.innerHTML = "";
+
+      const filtered = eventsData.filter(ev =>
+        filter === "all" ? true : ev.category === filter
+      );
+
+      filtered.forEach(ev => {
+        const card = document.createElement("article");
+        card.className = "event-card";
+
+        const bgImage = ev.image || "images/events/default.jpg";
+
+        card.innerHTML = `
+          <div class="event-image" style="background-image:url('${bgImage}');">
+            <div class="event-tag">${ev.tag}</div>
+          </div>
+          <div class="event-body">
+            <div class="event-title">${ev.title}</div>
+            <div class="event-meta">
+              <span>📅 ${ev.date}</span>
+              <span>📍 ${ev.location}</span>
+            </div>
+            <div class="event-description">${ev.description}</div>
+            <div class="event-actions">
+              <button class="event-button" data-event-id="${ev.id}">
+                <span>🐝</span>
+                <span>${isSignedUp(ev.id) ? "Signed up" : "Sign up"}</span>
+              </button>
+              <span class="event-pill">
+                ${isSignedUp(ev.id) ? "Added to your hive" : "Spots available"}
+              </span>
+            </div>
+          </div>
+        `;
+
+        const button = card.querySelector(".event-button");
+        if (isSignedUp(ev.id)) {
+          button.disabled = true;
+        } else {
+          button.addEventListener("click", () => handleSignUp(ev.id));
+        }
+
+        grid.appendChild(card);
+      });
+
+      // Update events count in hero card
+      const countEl = document.getElementById("eventsCount");
+      if (countEl) {
+        countEl.textContent = filtered.length.toString();
+      }
+    }
+
+    // Render signed-up events sidebar
+    function renderMyEvents() {
+      const container = document.getElementById("myEventsList");
+      container.innerHTML = "";
+
+      if (signedUpIds.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "my-events-empty";
+        empty.textContent =
+          "You haven’t signed up for any events yet. Once you do, they’ll show up here so you can keep track of them.";
+        container.appendChild(empty);
+        return;
+      }
+
+      const signedUpEvents = eventsData.filter(ev => signedUpIds.includes(ev.id));
+
+      signedUpEvents.forEach(ev => {
+        const li = document.createElement("li");
+        li.className = "my-event-item";
+        li.innerHTML = `
+          <div class="my-event-title">${ev.title}</div>
+          <div class="my-event-meta">📅 ${ev.date}</div>
+          <div class="my-event-meta">📍 ${ev.location}</div>
+        `;
+        container.appendChild(li);
+      });
+    }
+
+    // Small visual tie-in with "impact jar"
+    function updateHeroJar() {
+      const fill = document.getElementById("heroJarFill");
+      if (!fill) return;
+      const max = eventsData.length || 1;
+      const ratio = Math.min(signedUpIds.length / max, 1);
+      const heightPercent = 15 + ratio * 65; // between 15% and 80%
+      fill.style.height = heightPercent + "%";
+    }
+
+    // Filters
+    function setupFilters() {
+      const filterButtons = document.querySelectorAll(".filter-pill");
+      filterButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          filterButtons.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          const filter = btn.getAttribute("data-filter") || "all";
+          renderEvents(filter);
+        });
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadSignedUps();
+      setupFilters();
+      renderEvents("all");
+      renderMyEvents();
+      updateHeroJar();
+    });
+  </script>
+</body>
+</html>
+
