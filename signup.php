@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root"; 
 $password = ""; 
-$dbname = "the_hive";
+$dbname = "hive";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -37,3 +37,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 ?>
+
