@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Volunteer Dashboard - Honey Jar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #fff9f0;
+      --accent: #f4b41a;
+      --accent-dark: #e39a06;
+      --text-main: #2f2a26;
+      --card-bg: #ffffff;
+      --muted: #8a7b6b;
+      --border-soft: #f1e1c7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top left, #ffe9b7, #fff9f0 40%, #fff);
+      color: var(--text-main);
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 3rem;
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap:5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    header h1 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.7rem;
+      margin: 0;
+    }
+
+    header h1 span {
+      font-size: 1.4rem;
+    }
+
+    header .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      background-color: #fff3d4;
+      font-size: 0.8rem;
+      color: #8a6b18;
+      border: 1px solid #f7dd9a;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(260px, 1.1fr);
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Cards & sections */
+    .card {
+      background: var(--card-bg);
+      border-radius: 1rem;
+      padding: 1rem 1.2rem;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--border-soft);
+    }
+
+    .card h2 {
+      font-size: 1.1rem;
+      margin: 0 0 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .card h2 span.label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .stat-pill {
+      padding: 0.75rem 0.85rem;
+      border-radius: 0.9rem;
+      background: #fff8e5;
+      border: 1px solid #f7e3b6;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+
+    .stat-value {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .stat-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      gap: 1rem;
+    }
+
+    @media (max-width: 800px) {
+      .section-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Tables / lists */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    thead {
+      background: #fff6df;
+    }
+
+    th,
+    td {
+      padding: 0.5rem 0.4rem;
+      text-align: left;
+      border-bottom: 1px solid #f1e1c7;
+      vertical-align: middle;
+    }
+
+    th {
+      font-weight: 600;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    tbody tr:hover {
+      background-color: #fffdf5;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.18rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      border: 1px solid #f5e0b6;
+      background-color: #fff8e2;
+      color: #7a5a18;
+    }
+
+    .chip.secondary {
+      border-color: #e1d4ff;
+      background-color: #f5f1ff;
+      color: #524486;
+    }
+
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+    }
+
+    .list-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .list-main {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .list-title {
+      font-weight: 500;
+    }
+
+    .list-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .list-tag {
+      font-size: 0.75rem;
+      color: #7a5a18;
+      padding: 0.22rem 0.5rem;
+      border-radius: 999px;
+      background-color: #fff5d2;
+      border: 1px solid #f1dd9a;
+      white-space: nowrap;
+    }
+
+    /* Honey jar + bee */
+    .honey-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      text-align: center;
+    }
+
+    .honey-panel-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .honey-panel-header span {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .honey-jar-wrapper {
+      position: relative;
+      padding-top: 0.8rem;
+    }
+
+    .honey-jar {
+      width: 170px;
+      height: 220px;
+      border-radius: 60px 60px 35px 35px;
+      border: 3px solid #e0c28e;
+      background: #fff9e8;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.4);
+    }
+
+    .honey-jar::before {
+      /* lid */
+      content: "";
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 24px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #f4c253, #e1a921);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .honey-fill {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40%; /* overwritten by JS */
+      background: linear-gradient(180deg, #ffd467, #f4b41a);
+      box-shadow: inset 0 8px 12px rgba(255, 255, 255, 0.6);
+      transition: height 0.8s ease-out;
+    }
+
+    .honey-shine {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 40px;
+      height: 120px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.9), transparent 65%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .jar-label {
+      position: absolute;
+      inset: auto 0 10px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #553b11;
+      text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+    }
+
+    .jar-percent {
+      font-size: 1.15rem;
+      font-weight: 700;
+      display: block;
+    }
+
+    .bee {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(
+        90deg,
+        #2f2a26 0 18%,
+        #ffd54a 18% 46%,
+        #2f2a26 46% 64%,
+        #ffd54a 64% 82%,
+        #2f2a26 82% 100%
+      );
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18);
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bee-orbit 8s linear infinite;
+      transform-origin: 0 120px;
+      z-index: 3;
+    }
+
+    .bee::before,
+    .bee::after {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 18px;
+      border-radius: 50% 50% 50% 50%;
+      background: rgba(255, 255, 255, 0.85);
+      top: -10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+
+    .bee::before {
+      right: 4px;
+      transform: rotate(18deg);
+    }
+
+    .bee::after {
+      left: 4px;
+      transform: rotate(-18deg);
+    }
+
+    .bee-eye {
+      position: sticky;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #111;
+      top: 10px;
+      right: 4px;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 20px 30px;
+      position: relative;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .logo {
+      height: 50px;
+      width: auto;
+    }
+
+    .site-name {
+      font-size: 20px;
+      color: black;
+      font-weight: bold;
+    }
+    @keyframes bee-orbit {
+      0% {
+        transform: translateX(-50%) rotate(0deg) translateX(0);
+      }
+      25% {
+        transform: translateX(-50%) rotate(90deg) translateX(12px);
+      }
+      50% {
+        transform: translateX(-50%) rotate(180deg) translateX(0);
+      }
+      75% {
+        transform: translateX(-50%) rotate(270deg) translateX(-12px);
+      }
+      100% {
+        transform: translateX(-50%) rotate(360deg) translateX(0);
+      }
+    }
+
+    .honey-footnote {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .progress-bar-shell {
+      width: 100%;
+      height: 0.65rem;
+      border-radius: 999px;
+      background: #f4ebdb;
+      overflow: hidden;
+      margin-top: 0.35rem;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #f9d36b, #f0a90f);
+      transition: width 0.8s ease-out;
+    }
+    .mybtn{
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: rgb(242, 224, 167);
+            text-decoration: none;
+            color: black;
+            border-radius: 8px;
+    }
+    .mybtn:hover {
+            background-color: #8736AA;
+            color: white;
+    }
+    .create-event-btn {
+        display: inline-block;
+        padding: 10px 16px;
+        background-color: #f4b41a;
+        color: #2f2a26;
+        font-weight: 600;
+        border-radius: 10px;
+        text-decoration: none;
+        margin-top: 0.8rem;
+        transition: 0.2s;
+        border: 2px solid #e3a108;
+    }
+
+    .create-event-btn:hover {
+        background-color: #e3a108;
+        color: white;
+        transform: translateY(-2px);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="navbar">
+        <div class="navbar-left">
+            <a href="index.html">
+                <img src="images/logo.png" alt="Hive Connect Logo" class="logo" />
+            </a>
+            <span class="site-name">Hive Connect</span>
+        </div>
+        <div class="navbar-right">
+            <a href="index.html" class="mybtn">Home</a>
+            <a href="index.html" class="mybtn">Events</a>
+            <a href="AboutUs.html" class="mybtn">About Us</a>
+            <a href="TheHiveMeetTheTeam.html" class="mybtn">Meet the Team</a>
+            
+            <!--<button class="theme-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>-->
+        </div>
+  </div>
+  <div class="page">
+    <header>
+      <div>
+        <h1> <center> 🐝 Organizations Honey Hub </center></h1>
+        <p class="subtitle">
+          Track your past events and upcoming events — watch your honey jar fill as you give back.
+        </p>
+      </div>
+      <div class="tag">
+        <span>Profile:</span> <strong id="volunteerName">People 4 Plants</strong>
+      </div>
+    </header>
+
+    <div class="layout">
+      <!-- LEFT: Stats + history + events -->
+      <main>
+        <section class="card">
+          <h2>
+            Overview
+            <span class="label" id="completionLabel">Season progress</span>
+          </h2>
+          <div class="stats-grid">
+            <div class="stat-pill">
+              <div class="stat-label">Total Volunteers</div>
+              <div class="stat-value" id="totalHoursDisplay">—</div>
+              <div class="stat-sub">All-time volunteered</div>
+            </div>
+            <div class="stat-pill">
+              <div class="stat-label">Current Goal</div>
+              <div class="stat-value" id="goalHoursDisplay">—</div>
+              <div class="stat-sub">Target volunteers</div>
+            </div>
+            <div class="stat-pill">
+              <div class="stat-label">Completion</div>
+              <div class="stat-value" id="percentDisplay">—</div>
+              <div class="stat-sub">
+                <div class="progress-bar-shell">
+                  <div class="progress-bar-fill" id="overviewProgress"></div>
+                </div>
+              </div>
+            </div>
+            <div class="stat-pill">
+              <div class="stat-label">Events this Month</div>
+              <div class="stat-value" id="monthHoursDisplay">—</div>
+              <div class="stat-sub">Total events had this month</div>
+            </div>
+          </div>
+
+          <div class="section-grid">
+            <!-- History table -->
+            <div>
+              <h2>
+                Event History
+                <span class="label">Past  events</span>
+              </h2>
+              <div style="max-height: 240px; overflow: auto; border-radius: 0.75rem; border: 1px solid #f4e1c1;">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Event</th>
+                      <th>Role</th>
+                      <th>Hours</th>
+                    </tr>
+                  </thead>
+                  <tbody id="historyTableBody">
+                    <!-- Populated by JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Goals / upcoming signups -->
+            <div>
+              <h2>
+                Goals
+                <span class="label">What you’re working toward</span>
+              </h2>
+              <ul class="list" id="goalsList">
+                <!-- Populated by JS -->
+              </ul>
+
+              <div style="margin-top: 1rem;"></div>
+              <a href="CreateEvent.html" class="create-event-btn">+ Create Event</a>
+
+                <ul class="list" id="myEventsList"></ul>
+
+               
+              <ul class="list" id="myEventsList">
+                <!-- Populated by JS -->
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" style="margin-top: 1.25rem;">
+          <h2>
+            Upcoming Events
+        
+          </h2>
+          <ul class="list" id="upcomingList">
+            <!-- Populated by JS -->
+          </ul>
+        </section>
+      </main>
+
+      <!-- RIGHT: Honey jar + bee -->
+      <aside class="card">
+        <div class="honey-panel">
+          <div class="honey-panel-header">
+            <h2>Honey Jar Progress</h2>
+            <span>Each drop of honey represents the bee's in your hive.</span>
+          </div>
+
+          <div class="honey-jar-wrapper">
+            <div class="bee">
+              <div class="bee-eye"></div>
+            </div>
+
+            <div class="honey-jar">
+              <div class="honey-fill" id="honeyFill"></div>
+              <div class="honey-shine"></div>
+              <div class="jar-label">
+                <span class="jar-percent" id="jarPercent">0%</span>
+                of goal
+              </div>
+            </div>
+          </div>
+
+          <p class="honey-footnote" id="honeyFootnote">
+            You’ve completed 0 of 0 hours. Keep going, busy bee! 🐝
+          </p>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    // --- Mock data (replace with your real data source) ---
+    const volunteerName = "People 4 Plants";
+
+    const stats = {
+      totalHours: 700,
+      goalHours: 1000,
+      thisMonthHours: 3,
+    };
+
+    const historyEvents = [
+      {
+        date: "2025-10-02",
+        name: "Community Garden Clean-up",
+        role: "Organizer",
+        hours: 3,
+      },
+      {
+        date: "2025-09-18",
+        name: "Tree Planting Day",
+        role: "Organizer",
+        hours: 4.5,
+      },
+      {
+        date: "2025-09-01",
+        name: "Produce Bags Distribution",
+        role: "Organizer",
+        hours: 2,
+      },
+      {
+        date: "2025-08-20",
+        name: "Neighborhood Park Day",
+        role: "Organizer",
+        hours: 3.5,
+      },
+    ];
+
+    const goals = [
+      {
+        title: "Plant 60 Trees this semester",
+        progress: "24 / 60 Trees ",
+        status: "In progress",
+      },
+      {
+        title: "Donate 100 Produce Bags",
+        progress: "33/ 100 Bags",
+        status: "Almost there",
+      },
+    ];
+
+
+
+    const upcomingEvents = [
+      {
+        title: "Riverside Park Cleanup",
+        when: "Sat • Nov 29 • 9:00 AM",
+        location: "Riverside Park",
+        spots: "6 spots left",
+      },
+      {
+        title: "Community Pantry Distribution",
+        when: "Thu • Dec 4 • 3:00 PM",
+        location: "Main Street Pantry",
+        spots: "12 spots left",
+      },
+      {
+        title: "Produce Bag Packing",
+        when: "Sat • Dec 13 • 11:00 AM",
+        location: "People 4 Plants HQ",
+        spots: "4 spots left",
+      },
+    ];
+
+    // --- Populate UI ---
+    function formatDate(dateStr) {
+      const d = new Date(dateStr);
+      if (Number.isNaN(d.getTime())) return dateStr;
+      return d.toLocaleDateString(undefined, {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      });
+    }
+
+    function initDashboard() {
+      const nameEl = document.getElementById("volunteerName");
+      nameEl.textContent = volunteerName;
+
+      const totalHours = stats.totalHours;
+      const goalHours = stats.goalHours;
+      const thisMonthHours = stats.thisMonthHours;
+
+      const completion = goalHours > 0 ? Math.min((totalHours / goalHours) * 100, 100) : 0;
+      const completionRounded = Math.round(completion);
+
+      document.getElementById("totalHoursDisplay").textContent = totalHours.toFixed(0);
+      document.getElementById("goalHoursDisplay").textContent = goalHours.toFixed(0);
+      document.getElementById("monthHoursDisplay").textContent = thisMonthHours.toFixed(0);
+
+      document.getElementById("percentDisplay").textContent = completionRounded + "%";
+      document.getElementById("overviewProgress").style.width = completionRounded + "%";
+
+      const honeyFill = document.getElementById("honeyFill");
+      honeyFill.style.height = (completion || 2) + "%"; // tiny base so it doesn't look empty
+
+      document.getElementById("jarPercent").textContent = completionRounded + "%";
+
+      const footnote = document.getElementById("honeyFootnote");
+      footnote.textContent = `You have ${totalHours.toFixed(0)} of ${goalHours.toFixed(
+        0
+      )} bee's in Your Hive. Sweet work!`;
+
+      // History table
+      const historyBody = document.getElementById("historyTableBody");
+      historyBody.innerHTML = "";
+      historyEvents.forEach((ev) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${formatDate(ev.date)}</td>
+          <td>${ev.name}</td>
+          <td>${ev.role}</td>
+          <td>${ev.hours.toFixed(1)}</td>
+        `;
+        historyBody.appendChild(tr);
+      });
+
+      // Goals
+      const goalsList = document.getElementById("goalsList");
+      goalsList.innerHTML = "";
+      goals.forEach((g) => {
+        const li = document.createElement("li");
+        li.className = "list-item";
+        li.innerHTML = `
+          <div class="list-main">
+            <div class="list-title">${g.title}</div>
+            <div class="list-meta">${g.progress}</div>
+          </div>
+          <span class="list-tag">${g.status}</span>
+        `;
+        goalsList.appendChild(li);
+      });
+
+      
+
+      // Upcoming events
+      const upcomingList = document.getElementById("upcomingList");
+      upcomingList.innerHTML = "";
+      upcomingEvents.forEach((ev) => {
+        const li = document.createElement("li");
+        li.className = "list-item";
+        li.innerHTML = `
+          <div class="list-main">
+            <div class="list-title">${ev.title}</div>
+            <div class="list-meta">${ev.when} • ${ev.location}</div>
+          </div>
+          <span class="chip">${ev.spots}</span>
+        `;
+        upcomingList.appendChild(li);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", initDashboard);
+  </script>
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hive: Volunteer App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: radial-gradient(circle at top left, #ffe9b7, #fff9f0 40%, #fff);
+            color: var(--text-main);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;       /* keeps clean white bar */
+            padding: 20px 30px;
+            position: relative;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .site-name {
+            font-size: 20px;
+            color: black;
+            font-weight: bold;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+
+        .navbar a:hover {
+            color: #8736AA;  /* matches your purple accent */
+        }
+
+        /* Sign-in button */
+        .navbar .sign-up {
+            background-color: #A083D5;
+            padding: 10px 20px;
+            border-radius: 500px;
+            color: white !important;
+            font-weight: bold;
+        }
+
+        .navbar .sign-up:hover {
+            background-color: #8736AA;
+            color: white;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 20px;
+        }
+	    .mybtn
+        {
+            display: inline-block;         /* So the background becomes a "box" */
+            padding: 10px 15px;
+            background-color: rgb(242, 224, 167);
+            text-decoration: none;
+            color: black;
+            border-radius: 8px;
+            }
+        .text-section {
+            max-width: 50%;
+        }
+        .text-section h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .text-section p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .text-section .sign-up-btn {
+            background-color: #8736AA; /* purple background */
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .image-section img {
+            max-width: 90%;
+            border-radius: 10px;
+        }
+        .yellow-strip {
+            background-color:#FFE863 ; 
+            padding: 20px;
+            text-align: center;
+        }
+        .yellow-strip h2 {
+            color: white;
+        }
+        .yellow-strip p {
+            color: white;
+        }
+        .yellow-strip .icon {
+            width: 100px; /* Match the width of the .card */
+            height: 100px; /* Match the height of the .card */
+            object-fit: cover;
+        }
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            background-color:  #FFE863;
+            padding: 0px;
+        }
+        .green-block {
+            background-color: #f5f5f5; /* Match this to the background color of the entire website */
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .template-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-content: space-around;
+        }
+        .template-cards .card {
+            background-color: #FFE863; /* New background color for theme cards */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: #8736AA; /* purple text */
+        }
+        .template-cards .card a {
+            color: #8736AA; /* purple text */
+            text-decoration: underline;
+        }
+
+        .footer {
+            background-color: #8736AA; /* purple background */
+            color: white;
+            text-align: center;
+            padding: 10px; 
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .testimonial-section {
+            background-color: #f5f5f5;
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .testimonial-section h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        .testimonial-section p {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+        .testimonial {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .testimonial img {
+            max-width: 100px;
+            margin-right: 20px;
+            border-radius: 50%;
+        }
+        .testimonial .content {
+            text-align: left;
+        }
+        .testimonial .content h3 {
+            margin: 0 0 10px;
+        }
+        .testimonial .content p {
+            margin: 0;
+            font-size: 16px;
+            color: #666;
+        }
+        .testimonial .content .author {
+            font-weight: bold;
+        }
+        /* Modern Cute Signup Card */
+        .signup-card {
+            background: #ffffff;
+            width: 380px;
+            padding: 30px 50px;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            margin: 0 auto;
+            animation: fadeInUp 0.7s ease;
+        }
+
+        /* Title */
+        .signup-card h2 {
+            text-align: center;
+            color: #8736AA;
+            font-size: 28px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        /* Inputs */
+        .signup-card input,
+        .signup-card select {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 2px solid #eee;
+            background: #fafafa;
+            margin-bottom: 16px;
+            font-size: 16px;
+            transition: 0.2s ease;
+        }
+
+        .signup-card input:focus,
+        .signup-card select:focus {
+            outline: none;
+            border-color: #c389dd;
+            box-shadow: 0 0 8px rgba(135,54,170,0.3);
+        }
+
+        /* Labels */
+        .signup-card label {
+            font-weight: 600;
+            font-size: 14px;
+            color: #5a5a5a;
+        }
+
+        /* Cute Button */
+        .cute-btn {
+            width: 100%;
+            padding: 14px;
+            background: #8736AA;
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.25s ease;
+        }
+
+        .cute-btn:hover {
+            background: #9f4bc4;
+            transform: translateY(-2px);
+        }
+
+        /* Already have account text */
+        .login-text {
+            text-align: center;
+            margin-top: 18px;
+            color: #666;
+        }
+
+        .login-text a {
+            color: #8736AA;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .login-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+</head>
+<body>
+     <div class="navbar">
+        <div class="navbar-left">
+            <a href="index.html">
+                <img src="images/logo.png" alt="Hive Connect Logo" class="logo" />
+            </a>
+            <span class="site-name">Hive Connect</span>
+        </div>
+        <div class="navbar-right">
+            <a href="index.html" class="mybtn">Home</a>
+            <a href="index.html" class="mybtn">Events</a>
+            <a href="AboutUs.html" class="mybtn">About Us</a>
+            <a href="TheHiveMeetTheTeam.html" class="mybtn">Meet the Team</a>
+            
+            <!--<button class="theme-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>-->
+        </div>
+  </div>
+    <br><br><br><br>
+
+    <div class="signup-card">
+            <h2>Create an Event</h2>
+
+            <form action="signup.php" method="POST"> <!-- Replace if needed -->
+                <label for="name">Organizer Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="name">Event Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="name">Event Description</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="name">Volunteers Needed</label>
+                <input type="text" id="name" name="name" required>
+                
+
+                <label for="category">Event Category</label>
+                <select id="category" name="category-type" required>
+                    <option value="">-- Select Type --</option>
+                    <option value="volunteer">Gardening</option>
+                    <option value="organization">Hospital</option>
+                    <option value="organization">Elderly</option>
+                    <option value="organization">Rescue Shelter</option>
+                    <option value="organization">Homeless Shelter</option>
+                    <option value="organization">Clothing drives</option>
+                    <option value="organization">Tutoring & mentoring</option>
+                    <option value="organization">Community centers</option>
+                </select>
+                
+                
+
+                <button type="submit" class="cute-btn">Post Event</button>
+            </form>
+
+        
+    </div>
+   
+   
+
+
