@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Hive: Volunteer App</title>
+
+    <!-- Fonts used on "AboutUs" page (ensure the site-title matches AboutUs) -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Open+Sans&display=swap" rel="stylesheet" />
+
     <style>
         /* 🍯 HONEYCOMB + THEME TOKENS */
         :root {
@@ -23,7 +27,7 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Open Sans', Arial, sans-serif;
             margin: 0;
             padding: 0;
             margin-bottom: 1px;
@@ -49,7 +53,8 @@
             background-size: 100% 100%, 120px;
         }
 
-        .navbar {
+        /* Original navbar look (kept for fallback) */
+        .navbar.orig {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -57,17 +62,18 @@
             background-color:#FFE863;
             box-shadow: 0 200px 40px rgba(0, 0, 0, 0.1);
         }
-        .navbar a {
+        .navbar.orig a {
             text-decoration: none;
             color: white;
             margin: 0 10px;
         }
-        .navbar .sign-up {
+        .navbar.orig .sign-up {
             background-color: #a8aa36;
             color: white;
             padding: 10px 20px;
             border-radius: 500px;
         }
+
         .container {
             display: flex;
             justify-content: space-between;
@@ -97,15 +103,27 @@
             font-size: 18px;
             margin-bottom: 20px;
         }
-        .text-section .sign-up-btn {
-            background-color: #8736AA;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
+
+        /* Make the hero sign-up button visually match the nav sign-up button style used on AboutUs */
+        .sign-up-btn {
+            display: inline-block;
+            background-color: #ffffff;
+            color: #000;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            border: 1px solid rgba(0,0,0,0.08);
+            font-size: 15px;
             cursor: pointer;
+            text-decoration: none;
         }
+        .sign-up-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+            background-color: #FFD166;
+            color: #000;
+        }
+
         .image-section img {
             max-width: 90%;
             border-radius: 10px;
@@ -158,7 +176,7 @@
             color: #8736AA;
             text-decoration: underline;
         }
-        
+
         .card:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
@@ -168,7 +186,7 @@
         .footer {
             text-align: center;
             color: #8736AA;
-            padding: 20px; 
+            padding: 20px;
             width: 100%;
         }
 
@@ -240,7 +258,7 @@
             transform: translateY(0);
         }
 
-        /* 🐝 FLOATING BEE ANIMATION ACROSS THE PAGE */
+        /* 🐝 FLOATING BEE ANIMATION ACROSS THE PAGE (unchanged) */
         .page-bee {
             position: fixed;
             top: 18%;
@@ -327,10 +345,10 @@
                 transform: translateY(2px) scaleY(0.8);
             }
         }
-                /* ===========================
+        /* ===========================
            EXTRA FLOATING BEES (4 more)
            =========================== */
-        
+
         /* Shared bee styling */
         .bee {
             position: fixed;
@@ -349,7 +367,7 @@
             z-index: 999;
             pointer-events: none;
         }
-        
+
         .bee::before,
         .bee::after {
             content: "";
@@ -362,24 +380,24 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
             animation: wing-flap 0.4s ease-in-out infinite alternate;
         }
-        
+
         .bee::before { left: -3px; transform: rotate(-20deg); }
         .bee::after  { right: -3px; transform: rotate(20deg); }
-        
+
         @keyframes wing-flap {
             from { transform: translateY(0) scaleY(1); }
             to   { transform: translateY(2px) scaleY(0.8); }
         }
-        
+
         /* ============= Individual Bees ============= */
-        
+
         /*** Bee 1 – Left to Right ***/
         .bee1 {
             top: 18vh;
             left: -60px;
             animation: bee1path 18s linear infinite;
         }
-        
+
         @keyframes bee1path {
             0%   { transform: translateX(0) translateY(0); opacity: 0; }
             5%   { opacity: 1; }
@@ -387,7 +405,7 @@
             80%  { transform: translateX(100vw) translateY(15px); }
             100% { transform: translateX(125vw) translateY(0); opacity: 0; }
         }
-        
+
         /*** Bee 2 – Right to Left ***/
         .bee2 {
             top: 35vh;
@@ -395,7 +413,7 @@
             transform: scale(0.9);
             animation: bee2path 22s linear infinite;
         }
-        
+
         @keyframes bee2path {
             0%   { transform: translateX(0) translateY(0) scale(0.9); opacity: 0; }
             10%  { opacity: 1; }
@@ -403,7 +421,7 @@
             70%  { transform: translateX(-80vw) translateY(-25px) scale(0.9); }
             100% { transform: translateX(-120vw) translateY(0) scale(0.9); opacity: 0; }
         }
-        
+
         /*** Bee 3 – Diagonal Upwards ***/
         .bee3 {
             top: 75vh;
@@ -411,14 +429,14 @@
             transform: scale(0.8);
             animation: bee3path 26s linear infinite;
         }
-        
+
         @keyframes bee3path {
             0%   { transform: translateX(0) translateY(0) scale(0.8); opacity: 0; }
             10%  { opacity: 1; }
             50%  { transform: translateX(55vw) translateY(-30vh) scale(0.8); }
             100% { transform: translateX(110vw) translateY(-65vh) scale(0.8); opacity: 0; }
         }
-        
+
         /*** Bee 4 – Floating Zig-Zag ***/
         .bee4 {
             top: 55vh;
@@ -426,7 +444,7 @@
             transform: scale(0.75) rotate(-8deg);
             animation: bee4path 24s ease-in-out infinite;
         }
-        
+
         @keyframes bee4path {
             0%   { transform: translateX(0) translateY(0) rotate(-8deg) scale(0.75); opacity: 0; }
             10%  { opacity: 1; }
@@ -436,34 +454,135 @@
             100% { transform: translateX(110vw) translateY(0) rotate(-8deg) scale(0.75); opacity: 0; }
         }
 
+        /* ===========================
+           Header/footer styles (from AboutUs) to unify header/footer
+           =========================== */
+        :root { --brand: #8736AA; --header-height: 110px; --footer-height: 84px; }
+        .navbar {
+          position: relative;
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          padding: 18px 48px;
+          background-color: var(--brand);
+          box-shadow: 0 2px 8px rgba(0,0,0,0.14);
+          min-height: var(--header-height);
+          box-sizing: border-box;
+        }
+        .logo { flex: 0 0 auto; z-index: 2; }
+        .logo img { height: 72px; display: block; border-radius: 6px; }
+        .navbar h1 {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          margin: 0;
+          color: #fff;
+          font-size: 48px;
+          font-weight: 700;
+          line-height: 1;
+          z-index: 1;
+          pointer-events: none;
+          white-space: nowrap;
+          text-align: center;
+        }
+        /* Playful title styling (Fredoka One should now apply) */
+        .navbar h1 .site-title {
+          font-family: 'Fredoka One', 'Open Sans', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+          font-size: 30px;
+          background: linear-gradient(90deg, #FFD166 0%, #FFB86B 50%, #FF7A66 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          letter-spacing: 0.6px;
+          display: inline-block;
+          vertical-align: middle;
+          text-shadow: 0 3px 8px rgba(0,0,0,0.16);
+          -webkit-text-stroke: 0.5px rgba(0,0,0,0.06);
+          pointer-events: auto;
+        }
+        .title-badge {
+          width: 64px;
+          height: 64px;
+          margin-left: 12px;
+          vertical-align: middle;
+          filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18));
+          transform: translateY(-4px);
+          pointer-events: none;
+        }
+        .nav-links { margin-left: auto; flex: 0 0 auto; display: flex; gap: 12px; align-items: center; justify-content: flex-end; z-index: 2; }
+        .nav-links a { color: #000000; text-decoration: none; padding: 10px 14px; border-radius: 8px; font-weight: 600; font-size: 15px; background-color: #ffffff; border: 1px solid rgba(0,0,0,0.08); }
+        .nav-links a:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0,0,0,0.08); }
+        .nav-links .sign-up { padding: 10px 16px; font-weight: 700; }
+        .footer { background-color: var(--brand); color: #fff; text-align: center; padding: 22px 16px; font-size: 15px; min-height: var(--footer-height); box-sizing: border-box; }
+        @media (max-width: 520px) {
+          :root { --header-height: 78px; }
+          .logo img { height: 56px; }
+          .navbar { padding: 14px 18px; }
+          .navbar h1 .site-title { font-size: 20px; }
+          .title-badge { width: 44px; height: 44px; }
+        }
     </style>
 </head>
 <body>
 
-     <div class="navbar">
-        <a href="index.html" class="logo">
-            <img src="images/logo.png" width="100" height="5" alt="Logo" style="height: 70px; border-radius: 30%; object-fit: cover;">
-        </a>
-        <a href="index.html"><h1 style="color: white; font-weight:bold">The Hive</h1></a>
-        <div class="nav-links">
-            <a href="index.html" class="mybtn">Home</a>
-            <a href="events.html" class="mybtn">Events</a>
-            <a href="AboutUs.html" class="mybtn">About Us</a>
-            <a href="TheHiveMeetTheTeam.html" class="mybtn">Meet the Team</a>
-            <a href="SignupPage.html" class="mybtn">Sign up</a>
-        </div>
-    </div>
-    
+    <!-- Unified header: same markup and styles as AboutUs -->
+    <header class="navbar">
+      <div class="logo">
+        <img src="images/logo.png" alt="Hive Connect logo" />
+      </div>
+
+      <h1>
+        <span class="site-title">The Hive</span>
+        <svg class="title-badge" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="beeBodyGrad" x1="0" x2="1">
+              <stop offset="0%" stop-color="#FFD166" />
+              <stop offset="100%" stop-color="#FFB347" />
+            </linearGradient>
+            <filter id="beeShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000" flood-opacity="0.18" />
+            </filter>
+          </defs>
+          <g filter="url(#beeShadow)" transform="translate(0,0)">
+            <path d="M24 20 C14 10, 6 8, 14 28 C20 40, 34 34, 24 20 Z" fill="#FFFFFF" opacity="0.85" stroke="#F0F0F0" stroke-width="0.6" />
+            <path d="M44 20 C54 10, 62 8, 54 28 C48 40, 34 34, 44 20 Z" fill="#FFFFFF" opacity="0.85" stroke="#F0F0F0" stroke-width="0.6" />
+            <ellipse cx="34" cy="34" rx="14" ry="18" fill="url(#beeBodyGrad)" />
+            <path d="M21 38 C28 42, 40 42, 47 38" stroke="#2b2b2b" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.95" />
+            <path d="M21 44 C28 48, 40 48, 47 44" stroke="#2b2b2b" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.95" />
+            <path d="M30 50 L38 50 L34 58 Z" fill="#2b2b2b" opacity="0.95" />
+            <circle cx="30" cy="26" r="2.6" fill="#111" />
+            <circle cx="29.2" cy="25.2" r="0.7" fill="#fff" opacity="0.95" />
+            <circle cx="38" cy="26" r="2.6" fill="#111" />
+            <circle cx="38.8" cy="25.2" r="0.7" fill="#fff" opacity="0.95" />
+            <path d="M30 33 C32 35, 36 35, 38 33" stroke="#2b2b2b" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.95" />
+            <path d="M28 18 C24 12, 18 12, 16 16" stroke="#2b2b2b" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.9" />
+            <path d="M38 18 C42 12, 48 12, 50 16" stroke="#2b2b2b" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.9" />
+          </g>
+        </svg>
+      </h1>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="events.html">Events</a>
+        <a href="AboutUs.html">About Us</a>
+        <a href="TheHiveMeetTheTeam.html">Meet the Team</a>
+        <a href="SignupPage.html" class="sign-up">Sign up</a>
+      </nav>
+    </header>
+
+    <!-- KEEP THE REST OF YOUR ORIGINAL PAGE CONTENT EXACTLY THE SAME -->
     <div class="container">
         <div class="text-section">
             <h1>The Helping Hive</h1>
-            
-            <p class="slide-in"> The Hive’s mission is to connect people across Houston through meaningful 
+
+            <p class="slide-in"> The Hive’s mission is to connect people across Houston through meaningful
                 volunteer opportunities. We aim to make it easier for individuals to give back to their
-                 communities and for local organizations to find dedicated volunteers. By fostering 
+                 communities and for local organizations to find dedicated volunteers. By fostering
                  collaboration and service, The Hive helps build stronger, more connected neighborhoods.</p>
             <h3 class="slide-in">Sign up for open positions. Get real credit on-campus. Help your community now.</h3>
-            <button class="sign-up-btn">Sign up today</button>
+
+            <!-- Give the hero sign-up button the same visual style as the nav sign-up -->
+            <a href="SignupPage.html" class="sign-up-btn">Sign up today</a>
         </div>
         <div class="image-section">
             <img src="images/volunteer.jpg" width="500" height="200"   alt="Volunteer App Screens">
@@ -472,7 +591,7 @@
 
     <div class="yellow-strip">
         <h2>Explore over 10+ ways to volunteer today!</h2>
-       
+
         <div class="icon-container">
             <img src="images/gardenicon.jpg" alt=" icon 1" class="icon">
             <img src="images/foodbank.jpg" alt=" icon 2" class="icon">
@@ -492,7 +611,7 @@
                 <h3>Check out Volunteer of the month</h3>
                 <a href="volunteerOfTheMonth.html">Leaderboard</a>
             </div>
-        
+
             <div class="card fade-section">
                 <h3>Sustainable Connections</h3>
                 <p>Receive daily tips on volunteer happenings near you.</p>
@@ -520,7 +639,7 @@
             <div class="content fade-section">
                 <h3>Emily Johnson</h3>
                 <p>Animal shelter volunteer from Prairie View A&M University:</p>
-                <p>"I had been wanting to volunteer and connect with my local community, 
+                <p>"I had been wanting to volunteer and connect with my local community,
                     so glad I was able to get to work with the cute puppies!!"</p>
             </div>
         </div>
@@ -532,9 +651,9 @@
             <div class="content fade-section">
                 <h3>Taylor Coleman</h3>
                 <p>Manager at People for Plants:</p>
-                <p>"We've been looking for more volunteers to help us out with taking care of our plants. Now we've been able to 
+                <p>"We've been looking for more volunteers to help us out with taking care of our plants. Now we've been able to
                     gather more volunteers from the local Houston area than ever!"</p>
-            </div>   
+            </div>
         </div>
 
         <br>
@@ -549,11 +668,11 @@
         </div>
     </div>
 
-    <div class="footer">
-        <h2>The #1 volunteer hookup</h2>
-        <p>As endorsed by top ...</p>
-        <h6>*Not a factual claim (currently).</h6>
-    </div>
+    <!-- Unified footer (replaced your original footer markup with the shared footer) -->
+    <footer class="footer">
+        <h2>The #1 Volunteer Connection Spot</h2>
+        <p>Gain volunteer hours!</p>
+    </footer>
 
     <!-- 🐝 Floating bee element -->
     <div class="page-bee">
@@ -572,7 +691,7 @@
                 if (entry.isIntersecting) {
                     entry.target.classList.add("show");
                 } else {
-                    entry.target.classList.remove("show"); 
+                    entry.target.classList.remove("show");
                 }
             });
         });
@@ -584,12 +703,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
