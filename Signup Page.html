@@ -1,385 +1,505 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Hive: Volunteer App</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: radial-gradient(circle at top left, #ffe9b7, #fff9f0 40%, #fff);
-            color: var(--text-main);
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: white;       /* keeps clean white bar */
-            padding: 20px 30px;
-            position: relative;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hive Connect</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: transparent;
+      --text-color: #000000;
+      --accent-color: #fff;
+      --background-image: url('https://images.unsplash.com/photo-1626285094816-39f688104ce0?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+      --brand: #8736AA; 
 
-        .logo {
-            height: 50px;
-            width: auto;
-        }
+      /* header/footer sizing */
+      --header-height: 92px;
+      --footer-height: 84px;
+    }
 
-        .site-name {
-            font-size: 20px;
-            color: black;
-            font-weight: bold;
-        }
+    /* Page background (remote image with local fallback) */
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text-color);
+      background-image: var(--background-image), url('images/hive-background.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      background-color: var(--bg-color);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-        .navbar-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+    /* Header */
+    .navbar {
+      position: relative; /* needed for absolute-centering the title */
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 28px;
+      background-color: var(--brand); /* solid header */
+      box-shadow: 0 2px 8px rgba(0,0,0,0.14);
+      min-height: var(--header-height);
+      box-sizing: border-box;
+    }
+    .logo {
+      flex: 0 0 auto;
+      z-index: 2;
+    }
+    .logo img {
+      height: 72px;
+      display: block;
+    }
 
-        .navbar-right {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
+    .navbar h1 {
+      /* absolute center so title is centered in the navbar regardless of left/right items */
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      color: #fff; /* header text black */
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1;
+      z-index: 1;
+      pointer-events: none;
+      white-space: nowrap;
+      text-align: center;
+    }
 
-        .navbar a {
-            text-decoration: none;
-            color: black;
-            font-size: 16px;
-            transition: 0.2s;
-        }
+    .nav-links {
+      /* right-justify nav buttons */
+      margin-left: auto;
+      flex: 0 0 auto;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: flex-end;
+      z-index: 2;
+    }
 
-        .navbar a:hover {
-            color: #8736AA;  /* matches your purple accent */
-        }
+    
+    .nav-links a {
+      color: #000000; 
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      background-color: #ffffff;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+    .nav-links a:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+    }
 
-        /* Sign-in button */
-        .navbar .sign-up {
-            background-color: #A083D5;
-            padding: 10px 20px;
-            border-radius: 500px;
-            color: white !important;
-            font-weight: bold;
-        }
+    /* keep sign-up slightly emphasized */
+    .nav-links .sign-up {
+      padding: 10px 16px;
+      font-weight: 700;
+    }
 
-        .navbar .sign-up:hover {
-            background-color: #8736AA;
-            color: white;
-        }
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 50px 20px;
-        }
-	    .mybtn
-        {
-            display: inline-block;         /* So the background becomes a "box" */
-            padding: 10px 15px;
-            background-color: rgb(242, 224, 167);
-            text-decoration: none;
-            color: black;
-            border-radius: 8px;
-            }
-        .text-section {
-            max-width: 50%;
-        }
-        .text-section h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        .text-section p {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-        .text-section .sign-up-btn {
-            background-color: #8736AA; /* purple background */
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-        .image-section img {
-            max-width: 90%;
-            border-radius: 10px;
-        }
-        .yellow-strip {
-            background-color:#FFE863 ; 
-            padding: 20px;
-            text-align: center;
-        }
-        .yellow-strip h2 {
-            color: white;
-        }
-        .yellow-strip p {
-            color: white;
-        }
-        .yellow-strip .icon {
-            width: 100px; /* Match the width of the .card */
-            height: 100px; /* Match the height of the .card */
-            object-fit: cover;
-        }
-        .icon-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            background-color:  #FFE863;
-            padding: 0px;
-        }
-        .green-block {
-            background-color: #f5f5f5; /* Match this to the background color of the entire website */
-            padding: 20px;
-            margin-top: 20px;
-        }
-        .template-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            justify-content: space-around;
-        }
-        .template-cards .card {
-            background-color: #FFE863; /* New background color for theme cards */
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            color: #8736AA; /* purple text */
-        }
-        .template-cards .card a {
-            color: #8736AA; /* purple text */
-            text-decoration: underline;
-        }
+    /* Main container centers the translucent card */
+    .container {
+      min-height: calc(100vh - var(--header-height) - var(--footer-height));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      box-sizing: border-box;
+      position: relative; /* container is reference for bee positioning */
+    }
 
-        .footer {
-            background-color: #8736AA; /* purple background */
-            color: white;
-            text-align: center;
-            padding: 10px; 
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-        .testimonial-section {
-            background-color: #f5f5f5;
-            padding: 50px 20px;
-            text-align: center;
-        }
-        .testimonial-section h2 {
-            font-size: 30px;
-            margin-bottom: 20px;
-        }
-        .testimonial-section p {
-            font-size: 18px;
-            margin-bottom: 40px;
-        }
-        .testimonial {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .testimonial img {
-            max-width: 100px;
-            margin-right: 20px;
-            border-radius: 50%;
-        }
-        .testimonial .content {
-            text-align: left;
-        }
-        .testimonial .content h3 {
-            margin: 0 0 10px;
-        }
-        .testimonial .content p {
-            margin: 0;
-            font-size: 16px;
-            color: #666;
-        }
-        .testimonial .content .author {
-            font-weight: bold;
-        }
-        /* Modern Cute Signup Card */
-        .signup-card {
-            background: #ffffff;
-            width: 380px;
-            padding: 30px 50px;
-            border-radius: 20px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-            margin: 0 auto;
-            animation: fadeInUp 0.7s ease;
-        }
+    /* Translucent sign-in card */
+    .signup-container {
+      width: 100%;
+      max-width: 480px;
+      background-color: rgba(255,255,255,0.32); /* more transparent */
+      border: 1px solid rgba(255,255,255,0.45);
+      border-radius: 14px;
+      box-shadow: 0 14px 36px rgba(0,0,0,0.16);
+      padding: 32px;
+      text-align: left;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      position: relative; /* ensure card sits above bees */
+      z-index: 3;
+    }
+    .signup-container h2 {
+      margin: 0 0 14px 0;
+      color: var(--brand);
+      font-size: 22px;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 14px;
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: rgba(0,0,0,0.75);
+      font-size: 14px;
+    }
+    input[type="email"],
+    input[type="password"],
+    input[type="text"],
+    select {
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.12);
+      font-size: 15px;
+      color: #333333; /* dark grey for typed text */
+      background: rgba(255,255,255,0.9);
+      box-sizing: border-box;
+    }
 
-        /* Title */
-        .signup-card h2 {
-            text-align: center;
-            color: #8736AA;
-            font-size: 28px;
-            margin-bottom: 25px;
-            font-weight: 700;
-        }
+    /* Make selects visually consistent across platforms */
+    select { -webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: linear-gradient(45deg, transparent 50%, rgba(0,0,0,0.35) 50%), linear-gradient(135deg, rgba(0,0,0,0.35) 50%, transparent 50%); background-position: calc(100% - 18px) calc(1em + 2px), calc(100% - 13px) calc(1em + 2px); background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; padding-right: 36px; }
 
-        /* Inputs */
-        .signup-card input,
-        .signup-card select {
-            width: 100%;
-            padding: 12px 14px;
-            border-radius: 10px;
-            border: 2px solid #eee;
-            background: #fafafa;
-            margin-bottom: 16px;
-            font-size: 16px;
-            transition: 0.2s ease;
-        }
+    /* placeholder color for text/email/password */
+    input[type="email"]::placeholder,
+    input[type="password"]::placeholder,
+    input[type="text"]::placeholder {
+      color: rgba(51,51,51,0.6); /* slightly lighter dark grey for placeholders */
+    }
 
-        .signup-card input:focus,
-        .signup-card select:focus {
-            outline: none;
-            border-color: #c389dd;
-            box-shadow: 0 0 8px rgba(135,54,170,0.3);
-        }
+    /* Focus styles shared */
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    input[type="text"]:focus,
+    select:focus {
+      outline: none;
+      border-color: #c389dd;
+      box-shadow: 0 0 8px rgba(135,54,170,0.3);
+    }
 
-        /* Labels */
-        .signup-card label {
-            font-weight: 600;
-            font-size: 14px;
-            color: #5a5a5a;
-        }
+    /* Keep header/footer text black; form primary button stays brand color with white text */
+    .actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 18px;
+      gap: 10px;
+    }
+    .primary-btn {
+      background-color: var(--brand);
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .primary-btn:hover { opacity: 0.96; }
 
-        /* Cute Button */
-        .cute-btn {
-            width: 100%;
-            padding: 14px;
-            background: #8736AA;
-            color: #ffffff;
-            border: none;
-            border-radius: 12px;
-            font-size: 18px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: 0.25s ease;
-        }
+    .back-link {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 14px;
+    }
+    .back-link a { color: var(--brand); text-decoration: underline; }
 
-        .cute-btn:hover {
-            background: #9f4bc4;
-            transform: translateY(-2px);
-        }
+    /* Footer (solid) */
+    .footer {
+      background-color: var(--brand); /* solid footer */
+      color: #fff; /* footer text black */
+      text-align: center;
+      padding: 22px 16px;
+      font-size: 15px;
+      min-height: var(--footer-height);
+      box-sizing: border-box;
+    }
 
-        /* Already have account text */
-        .login-text {
-            text-align: center;
-            margin-top: 18px;
-            color: #666;
-        }
-
-        .login-text a {
-            color: #8736AA;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .login-text a:hover {
-            text-decoration: underline;
-        }
-
-        /* Animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(25px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-    </style>
+    /* Responsive tweaks */
+    @media (max-width: 520px) {
+      :root {
+        --header-height: 78px;
+        --footer-height: 78px;
+      }
+      .logo img { height: 56px; }
+      /* On small screens, revert title to normal flow so it wraps and doesn't overlap */
+      .navbar h1 {
+        position: static;
+        transform: none;
+        text-align: center;
+        margin-left: 8px;
+        margin-right: 8px;
+        pointer-events: auto;
+        color: #000000;
+      }
+      .navbar h1 { font-size: 18px; }
+      .signup-container { padding: 20px; border-radius: 12px; max-width: 92%; }
+      .nav-links .sign-up { padding: 8px 12px; }
+      .nav-links a { padding: 8px 10px; font-size: 14px; }
+      .actions { justify-content: center; }
+    }
+    /* Playful title styling (copied from AboutUs for consistent branding) */
+    .navbar h1 .site-title {
+      font-family: 'Fredoka One', 'Open Sans', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      font-size: 30px;
+      background: linear-gradient(90deg, #FFD166 0%, #FFB86B 50%, #FF7A66 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 0.6px;
+      display: inline-block;
+      vertical-align: middle;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.16);
+      -webkit-text-stroke: 0.5px rgba(0,0,0,0.06);
+      pointer-events: auto;
+    }
+    .title-badge {
+      width: 64px;
+      height: 64px;
+      margin-left: 12px;
+      vertical-align: middle;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18));
+      transform: translateY(-4px);
+      pointer-events: none;
+    }
+    @media (max-width: 520px) {
+      .navbar h1 .site-title { font-size: 20px; }
+      .title-badge { width: 44px; height: 44px; }
+    }
+      /* Bee swarm styles */
+      #bee-swarm {
+        position: absolute;
+        inset: 0; /* cover the container area */
+        pointer-events: none;
+        overflow: hidden; /* keep bees clipped to the container to avoid scrollbars */
+        z-index: 1; /* behind the signin card */
+      }
+      .bee {
+        position: absolute;
+        width: 36px;
+        height: 36px;
+        transform: translate(-50%, -50%) rotate(0deg);
+        transition: transform 120ms linear;
+        will-change: transform, left, top;
+        pointer-events: none;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.16));
+      }
+      .bee svg { width: 100%; height: 100%; display: block; }
+  </style>
 </head>
 <body>
-     <div class="navbar">
-        <div class="navbar-left">
-            <a href="index.html">
-                <img src="images/logo.png" alt="Hive Connect Logo" class="logo" />
-            </a>
-            <span class="site-name">Hive Connect</span>
-        </div>
-        <div class="navbar-right">
-            <a href="index.html" class="mybtn">Home</a>
-            <a href="index.html" class="mybtn">Events</a>
-            <a href="AboutUs.html" class="mybtn">About Us</a>
-            <a href="TheHiveMeetTheTeam.html" class="mybtn">Meet the Team</a>
-            
-            <!--<button class="theme-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>-->
-        </div>
-  </div>
-    <br><br><br><br>
-
-    <div class="signup-card">
-            <h2>Create an Account</h2>
-
-            <form action="signup.php" method="POST">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-
-                <label for="user-type">User Type</label>
-                <select id="user-type" name="user-type" required>
-                    <option value="">-- Select Type --</option>
-                    <option value="volunteer">Volunteer</option>
-                    <option value="organization">Organization</option>
-                </select>
-
-                <button type="submit" class="cute-btn">Sign Up</button>
-            </form>
-
-            <p class="login-text">Already have an account?  
-                <a href="Login.html">Login here</a>
-            </p>
+  <header class="navbar">
+    <div class="logo">
+      <img src="images/logo.png" alt="Hive Connect logo" />
     </div>
-    <!--<div class="container"> -->
-    
-        <!-- SignUp Box Section -->
-        <!--<div class="testimonial fade-section">
-            <div class="signup-container">
-                <h2>Create an Account</h2>
-                <form action="signup.php" method="POST">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required><br>
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required><br>
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required><br>
-                        <label for="user-type">User Type</label>
-                        <select id="user-type" name="user-type" required>
-                            <option value="">-- Select Type --</option>
-                            <option value="volunteer">Volunteer</option>
-                            <option value="organization">Organization</option>
-                        </select><br>
 
-                        <button type="submit">Sign Up</button>
-                </form>
-            </div>
+    <h1>
+      <span class="site-title">The Hive</span>
+      <svg class="title-badge" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="beeBodyGrad" x1="0" x2="1">
+            <stop offset="0%" stop-color="#FFD166" />
+            <stop offset="100%" stop-color="#FFB347" />
+          </linearGradient>
+          <filter id="beeShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000" flood-opacity="0.18" />
+          </filter>
+        </defs>
+        <g filter="url(#beeShadow)" transform="translate(0,0)">
+          <path d="M24 20 C14 10, 6 8, 14 28 C20 40, 34 34, 24 20 Z" fill="#FFFFFF" opacity="0.85" stroke="#F0F0F0" stroke-width="0.6" />
+          <path d="M44 20 C54 10, 62 8, 54 28 C48 40, 34 34, 44 20 Z" fill="#FFFFFF" opacity="0.85" stroke="#F0F0F0" stroke-width="0.6" />
+          <ellipse cx="34" cy="34" rx="14" ry="18" fill="url(#beeBodyGrad)" />
+          <path d="M21 38 C28 42, 40 42, 47 38" stroke="#2b2b2b" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.95" />
+          <path d="M21 44 C28 48, 40 48, 47 44" stroke="#2b2b2b" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.95" />
+          <path d="M30 50 L38 50 L34 58 Z" fill="#2b2b2b" opacity="0.95" />
+          <circle cx="30" cy="26" r="2.6" fill="#111" />
+          <circle cx="29.2" cy="25.2" r="0.7" fill="#fff" opacity="0.95" />
+          <circle cx="38" cy="26" r="2.6" fill="#111" />
+          <circle cx="38.8" cy="25.2" r="0.7" fill="#fff" opacity="0.95" />
+          <path d="M30 33 C32 35, 36 35, 38 33" stroke="#2b2b2b" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.95" />
+          <path d="M28 18 C24 12, 18 12, 16 16" stroke="#2b2b2b" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.9" />
+          <path d="M38 18 C42 12, 48 12, 50 16" stroke="#2b2b2b" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.9" />
+        </g>
+      </svg>
+    </h1>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="index.html">Home</a> 
+      <a href="events.html">Events</a>
+      <a href="AboutUs.html">About Us</a>
+      <a href="TheHiveMeetTheTeam.html">Meet the Team</a>
+      <a href="SignupPage.html" class="sign-up">Sign up</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="signup-container" aria-labelledby="login-title">
+      <h2 id="login-title">Log in</h2>
+
+      <form>
+        <div class="form-group">
+          <label for="fullname">Full name</label>
+          <input id="fullname" name="fullname" type="text" placeholder="First Last" required />
         </div>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="userType">User type</label>
+          <select id="userType" name="userType">
+            <option value="student">Student</option>
+            <option value="volunteer">Volunteer</option>
+            <option value="organization">Organization</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="orgNameWrap" style="display:none;">
+          <label for="orgName">Organization name</label>
+          <input id="orgName" name="orgName" type="text" placeholder="Organization name" />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" placeholder="••••••••" required />
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="primary-btn">Log in</button>
+        </div>
+
         <div class="back-link">
-            <p>Already have an account? <a href="Login.html">Login here</a></p>
+          <p>Sign-in using your student ID.</p>
         </div>
-    </div>
-    </div>-->
+      </form>
+    </section>
+    <!-- Bee swarm container (visual bees orbit around the sign-in card) -->
+    <div id="bee-swarm" aria-hidden="true"></div>
+  </main>
+
+  <footer class="footer">
+    <h2>The #1 Volunteer Connection Spot</h2>
+    <p>Gain volunteer hours!</p>
+  </footer>
+  <script>
+    // Bee swarm animation: spawns simple bees (SVG) and animates them around the signup card.
+    (function() {
+      const swarm = document.getElementById('bee-swarm');
+      const card = document.querySelector('.signup-container');
+      if (!swarm || !card) return;
+
+      // simplified bee SVG template (no defs to avoid id collisions)
+      function beeSVG(fillSize) {
+        return `
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <g>
+              <ellipse cx="34" cy="34" rx="14" ry="12" fill="#FFD166" />
+              <path d="M21 34 C28 36, 40 36, 47 34" stroke="#2b2b2b" stroke-width="3" stroke-linecap="round" fill="none" />
+              <path d="M21 40 C28 42, 40 42, 47 40" stroke="#2b2b2b" stroke-width="3" stroke-linecap="round" fill="none" />
+              <circle cx="27" cy="28" r="2" fill="#111" />
+              <circle cx="41" cy="28" r="2" fill="#111" />
+              <path d="M30 32 C32 34, 36 34, 38 32" stroke="#2b2b2b" stroke-width="1.2" fill="none" stroke-linecap="round" />
+              <path d="M22 20 C18 12, 12 12, 14 18" stroke="#2b2b2b" stroke-width="1" stroke-linecap="round" fill="none" />
+              <path d="M46 20 C50 12, 56 12, 54 18" stroke="#2b2b2b" stroke-width="1" stroke-linecap="round" fill="none" />
+            </g>
+          </svg>`;
+      }
+
+      // Create animated bee element
+      function createBee(i) {
+        const el = document.createElement('div');
+        el.className = 'bee';
+        // make bees noticeably larger
+        const size = 44 + Math.round(Math.random() * 52); // 44-96px
+        el.style.width = size + 'px';
+        el.style.height = size + 'px';
+        el.innerHTML = beeSVG(size);
+
+        // animation parameters: let bees roam around the container (not just card center)
+        const rect = card.getBoundingClientRect();
+        const containerRect = document.querySelector('.container').getBoundingClientRect();
+        // center relative to container
+        const centerX = containerRect.width / 2;
+        const centerY = containerRect.height / 2;
+        // allow radii to reach toward edges (some may slightly go beyond container bounds)
+        const radiusX = (containerRect.width / 2) * (0.6 + Math.random() * 1.0); // 60% - 160% of half-width
+        const radiusY = (containerRect.height / 2) * (0.5 + Math.random() * 1.2); // 50% - 170% of half-height
+        const angle = Math.random() * Math.PI * 2;
+        // slower speeds
+        const speed = 0.15 + Math.random() * 0.45; // 0.15 - 0.6 radians/s
+        const phase = Math.random() * Math.PI * 2;
+
+        swarm.appendChild(el);
+
+        return { el, centerX, centerY, radiusX, radiusY, angle, speed, phase };
+      }
+
+      // spawn bees
+      const bees = [];
+      const count = 9;
+      for (let i = 0; i < count; i++) bees.push(createBee(i));
+
+      let last = performance.now();
+      function frame(now) {
+        const dt = (now - last) / 1000; last = now;
+
+        // update bees positions
+        for (const b of bees) {
+          b.angle += b.speed * dt;
+          const x = b.centerX + Math.cos(b.angle + b.phase) * b.radiusX;
+          const y = b.centerY + Math.sin(b.angle * 1.15 + b.phase) * b.radiusY + Math.sin(b.angle * 2 + b.phase) * 6;
+          b.el.style.left = Math.round(x) + 'px';
+          b.el.style.top = Math.round(y) + 'px';
+          const deg = (Math.atan2(y - b.centerY, x - b.centerX) * 180) / Math.PI;
+          b.el.style.transform = `translate(-50%, -50%) rotate(${deg}deg)`;
+        }
+
+        requestAnimationFrame(frame);
+      }
+
+      // reposition bees on resize/scroll (recompute centers)
+      function recompute() {
+        const rect = card.getBoundingClientRect();
+        const containerRect = document.querySelector('.container').getBoundingClientRect();
+        for (const b of bees) {
+          // recompute center as container center
+          b.centerX = containerRect.width / 2;
+          b.centerY = containerRect.height / 2;
+          // recompute radii so bees can roam toward edges after resize
+          b.radiusX = (containerRect.width / 2) * (0.6 + Math.random() * 1.0);
+          b.radiusY = (containerRect.height / 2) * (0.5 + Math.random() * 1.2);
+        }
+      }
+      window.addEventListener('resize', recompute);
+      window.addEventListener('scroll', recompute);
+
+      requestAnimationFrame(frame);
+    })();
+  </script>
+    <script>
+      // Toggle Organization name field when user picks Organization
+      (function(){
+        const userType = document.getElementById('userType');
+        const orgWrap = document.getElementById('orgNameWrap');
+        if (!userType || !orgWrap) return;
+        function onChange() {
+          if (userType.value === 'organization') orgWrap.style.display = '';
+          else orgWrap.style.display = 'none';
+        }
+        userType.addEventListener('change', onChange);
+        // init
+        onChange();
+      })();
+    </script>
+</body>
+</html>
    
+
 
 
