@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,19 +13,35 @@
       background-color: #f5f5f5;
     }
 
+    /* === UPDATED HEADER (WHITE BACKGROUND) === */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 20px;
-      background-color: #8736AA;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 0px 20px;
+      background-color: white; /* changed to white */
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
 
     .navbar a {
       text-decoration: none;
-      color: white;
       margin: 0 10px;
+      color: black; /* looks clean on white */
+    }
+
+    /* === NAV BUTTON STYLE FROM MAIN PAGE === */
+    .mybtn {
+      display: inline-block;
+      padding: 10px 15px;
+      background-color: rgb(242, 224, 167);
+      text-decoration: none;
+      color: black;
+      border-radius: 8px;
+    }
+
+    .mybtn:hover {
+      background-color: #8736AA;
+      color: white;
     }
 
     .logo img {
@@ -125,19 +140,22 @@
 
 <body>
 
+  <!-- =========================
+       WHITE HEADER + BUTTONS
+     ========================= -->
   <div class="navbar">
-   <div class="images/logo">
-      <img src="images/logo.png" alt="Logo" style="height: 70px;">
-    </div>
+    <div class="logo">
+      <img src="images/logo.png" alt="Logo">
     </div>
 
-     <div class="nav-links">
-      <a href="Signup Page.html">Sign up</a>
-      <a href="#">Features</a>
-      <a href="AboutUs.html">About Us</a>
-      <a href="TheHiveMeetTheTeam.html">Meet the Team</a>
+    <div class="nav-links">
+      <a href="Signup Page.html" class="mybtn">Sign up</a>
+      <a href="#" class="mybtn">Features</a>
+      <a href="AboutUs.html" class="mybtn">About Us</a>
+      <a href="TheHiveMeetTheTeam.html" class="mybtn">Meet the Team</a>
     </div>
   </div>
+
 
   <!-- ===== TIPS / ADVICE SECTION ===== -->
   <section class="page-section">
@@ -192,7 +210,7 @@
       </div>
 
       <div class="tip-card">
-        <h3> Track Your Impact</h3>
+        <h3>Track Your Impact</h3>
         <p>
           Logging your hours helps you see your growth and unlocks recognition inside the Hive Leaderboard.
         </p>
@@ -233,3 +251,4 @@
 
 </body>
 </html>
+
