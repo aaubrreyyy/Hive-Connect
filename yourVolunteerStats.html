@@ -27,6 +27,44 @@
       color: var(--text-main);
     }
 
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      background-color: var(--accent-yellow);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar img {
+      height: 70px;
+      border-radius: 30%;
+      object-fit: cover;
+    }
+
+    .navbar h1 {
+      color: white;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      margin: 0 8px;
+      display: inline-block;
+      padding: 10px 15px;
+      border-radius: 8px;
+      background-color: rgb(242, 224, 167);
+      color: black;
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: var(--accent-purple);
+      color: white;
+      transform: translateY(-1px);
+    }
+
     .page {
       max-width: 1200px;
       margin: 0 auto;
