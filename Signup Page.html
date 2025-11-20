@@ -8,28 +8,67 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            margin-bottom: 1px;
-            background-color: #f5f5f5;
+            background: radial-gradient(circle at top left, #ffe9b7, #fff9f0 40%, #fff);
+            color: var(--text-main);
         }
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
-            background-color:#8736AA;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: white;       /* keeps clean white bar */
+            padding: 20px 30px;
+            position: relative;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
+
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .site-name {
+            font-size: 20px;
+            color: black;
+            font-weight: bold;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
         .navbar a {
             text-decoration: none;
-            color: white;
-            margin: 0 10px;
+            color: black;
+            font-size: 16px;
+            transition: 0.2s;
         }
+
+        .navbar a:hover {
+            color: #8736AA;  /* matches your purple accent */
+        }
+
+        /* Sign-in button */
         .navbar .sign-up {
-            background-color: #8736AA; /* purple background */
-            color: white;
+            background-color: #A083D5;
             padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: 500px;
+            color: white !important;
+            font-weight: bold;
+        }
+
+        .navbar .sign-up:hover {
+            background-color: #8736AA;
+            color: white;
         }
         .container {
             display: flex;
@@ -37,7 +76,8 @@
             align-items: center;
             padding: 50px 20px;
         }
-	.mybtn{
+	    .mybtn
+        {
             display: inline-block;         /* So the background becomes a "box" */
             padding: 10px 15px;
             background-color: rgb(242, 224, 167);
@@ -168,52 +208,178 @@
         .testimonial .content .author {
             font-weight: bold;
         }
+        /* Modern Cute Signup Card */
+        .signup-card {
+            background: #ffffff;
+            width: 380px;
+            padding: 30px 50px;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            margin: 0 auto;
+            animation: fadeInUp 0.7s ease;
+        }
+
+        /* Title */
+        .signup-card h2 {
+            text-align: center;
+            color: #8736AA;
+            font-size: 28px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        /* Inputs */
+        .signup-card input,
+        .signup-card select {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 2px solid #eee;
+            background: #fafafa;
+            margin-bottom: 16px;
+            font-size: 16px;
+            transition: 0.2s ease;
+        }
+
+        .signup-card input:focus,
+        .signup-card select:focus {
+            outline: none;
+            border-color: #c389dd;
+            box-shadow: 0 0 8px rgba(135,54,170,0.3);
+        }
+
+        /* Labels */
+        .signup-card label {
+            font-weight: 600;
+            font-size: 14px;
+            color: #5a5a5a;
+        }
+
+        /* Cute Button */
+        .cute-btn {
+            width: 100%;
+            padding: 14px;
+            background: #8736AA;
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.25s ease;
+        }
+
+        .cute-btn:hover {
+            background: #9f4bc4;
+            transform: translateY(-2px);
+        }
+
+        /* Already have account text */
+        .login-text {
+            text-align: center;
+            margin-top: 18px;
+            color: #666;
+        }
+
+        .login-text a {
+            color: #8736AA;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .login-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <div class="logo">
-            <a href="index.html"><img src="images/logo.png"  width="100" height="5" alt="Logo" style="height: 70px; border-radius: 30%; object fit: cover;"></a>
+     <div class="navbar">
+        <div class="navbar-left">
+            <a href="index.html">
+                <img src="images/logo.png" alt="Hive Connect Logo" class="logo" />
+            </a>
+            <span class="site-name">Hive Connect</span>
         </div>
-	<h1 style="color: white;">The Hive</h1>
-        <div class="nav-links">
-            <a href="Signup Page.html" class="mybtn">Sign up</a>
-            <a href="#" class="mybtn">Features</a>
+        <div class="navbar-right">
+            <a href="index.html" class="mybtn">Home</a>
+            <a href="index.html" class="mybtn">Events</a>
             <a href="AboutUs.html" class="mybtn">About Us</a>
             <a href="TheHiveMeetTheTeam.html" class="mybtn">Meet the Team</a>
+            
+            <!--<button class="theme-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>-->
         </div>
-    </div>
-    <div class="container">
-        <div class="text-section">
-            <h2>Help your community now.</h2>
-          <div class="signup-container">
-        <h2>Create an Account</h2>
-	<form action="signup.php" method="POST">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" required><br>
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" required><br>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required><br>
-            <label for="user-type">User Type</label>
-            <select id="user-type" name="user-type" required>
-                <option value="">-- Select Type --</option>
-                <option value="volunteer">Volunteer</option>
-                <option value="organization">Organization</option>
-            </select><br>
+  </div>
+    <br><br><br><br>
 
-            <button type="submit">Sign Up</button>
-	</form>
+    <div class="signup-card">
+            <h2>Create an Account</h2>
+
+            <form action="signup.php" method="POST">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="user-type">User Type</label>
+                <select id="user-type" name="user-type" required>
+                    <option value="">-- Select Type --</option>
+                    <option value="volunteer">Volunteer</option>
+                    <option value="organization">Organization</option>
+                </select>
+
+                <button type="submit" class="cute-btn">Sign Up</button>
+            </form>
+
+            <p class="login-text">Already have an account?  
+                <a href="Login.html">Login here</a>
+            </p>
+    </div>
+    <!--<div class="container"> -->
+    
+        <!-- SignUp Box Section -->
+        <!--<div class="testimonial fade-section">
+            <div class="signup-container">
+                <h2>Create an Account</h2>
+                <form action="signup.php" method="POST">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required><br>
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required><br>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required><br>
+                        <label for="user-type">User Type</label>
+                        <select id="user-type" name="user-type" required>
+                            <option value="">-- Select Type --</option>
+                            <option value="volunteer">Volunteer</option>
+                            <option value="organization">Organization</option>
+                        </select><br>
+
+                        <button type="submit">Sign Up</button>
+                </form>
+            </div>
+        </div>
         <div class="back-link">
             <p>Already have an account? <a href="Login.html">Login here</a></p>
         </div>
     </div>
-    </div>
-    <div class="footer">
-        <h2>The #1 volunteer hookup</h2>
-        <p>As endorsed by top ...</p>
-        <h6>*Not a factual claim (currently).</h6>
-
-    </div>
+    </div>-->
+   
 
 
