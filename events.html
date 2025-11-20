@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Hive: Volunteer Events</title>
+
+  <!-- Fonts used by AboutUs so the site-title matches -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Open+Sans&display=swap" rel="stylesheet" />
+
   <style>
     /* 🍯 HONEYCOMB + THEME TOKENS */
     :root {
@@ -34,46 +38,7 @@
       background-attachment: fixed;
     }
 
-    /* Navbar (similar to main page) */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-      background-color: var(--accent-yellow);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .navbar img {
-      height: 70px;
-      border-radius: 30%;
-      object-fit: cover;
-    }
-
-    .navbar h1 {
-      color: white;
-      font-weight: bold;
-      margin: 0;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      margin: 0 8px;
-      display: inline-block;
-      padding: 10px 15px;
-      border-radius: 8px;
-      background-color: rgb(242, 224, 167);
-      color: black;
-      transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
-    }
-
-    .nav-links a:hover {
-      background-color: var(--accent-purple);
-      color: white;
-      transform: translateY(-1px);
-    }
-
-    /* Page layout */
+    /* Page layout and original styles preserved */
     .page {
       max-width: 1200px;
       margin: 0 auto;
@@ -89,287 +54,79 @@
       margin-bottom: 30px;
     }
 
-    .hero-text {
-      max-width: 580px;
-    }
+    .hero-text { max-width: 580px; }
+    .hero-text h2 { margin: 0 0 10px; font-size: 32px; display:flex; gap:8px; align-items:center; }
+    .hero-text p { margin: 0 0 12px; font-size: 16px; line-height: 1.4; }
 
-    .hero-text h2 {
-      margin: 0 0 10px;
-      font-size: 32px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .hero-highlight { display:inline-flex; gap:6px; padding:5px 10px; border-radius:999px; background:#fff6cf; border:1px solid #f2dd90; font-size:13px; margin-top:6px; }
+    .hero-filters { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+    .filter-pill { padding:6px 12px; border-radius:999px; border:1px solid #f0d792; background:#fffaf0; font-size:13px; cursor:pointer; }
+    .filter-pill.active { background:var(--accent-purple); color:#fff; border-color:var(--accent-purple); }
 
-    .hero-text p {
-      margin: 0 0 12px;
-      font-size: 16px;
-      line-height: 1.4;
-    }
+    .hero-image { flex:0 0 260px; max-width:300px; background:rgba(255,255,255,0.9); border-radius:16px; padding:16px; box-shadow:0 10px 30px rgba(0,0,0,0.12); position:relative; overflow:hidden; }
+    .hero-image-inner { border-radius:12px; background:linear-gradient(145deg,#ffe9b8,#ffd56b); padding:18px; text-align:center; color:#5a4210; font-size:14px; }
+    .hero-jar { width:90px; height:110px; border-radius:40px 40px 25px 25px; border:2px solid #e0c28e; background:#fff9e8; margin:0 auto 10px; position:relative; overflow:hidden; }
+    .hero-jar::before { content:""; position:absolute; top:-14px; left:50%; transform:translateX(-50%); width:70px; height:18px; border-radius:12px; background:linear-gradient(180deg,#f4c253,#e1a921); box-shadow:0 3px 6px rgba(0,0,0,0.15); }
+    .hero-jar-fill { position:absolute; bottom:0; left:0; width:100%; height:40%; background:linear-gradient(180deg,#ffd467,#f4b41a); box-shadow: inset 0 6px 10px rgba(255,255,255,0.6); }
+    .hero-bee { position:absolute; top:8px; right:10px; width:26px; height:26px; border-radius:50%; background:linear-gradient(90deg,#2f2a26 0 18%,#ffd54a 18% 46%,#2f2a26 46% 64%,#ffd54a 64% 82%,#2f2a26 82% 100%); box-shadow:0 4px 8px rgba(0,0,0,0.18); animation:hero-bee-bob 2.5s ease-in-out infinite; }
+    .hero-bee::before,.hero-bee::after { content:""; position:absolute; width:12px; height:16px; border-radius:50%; background:rgba(255,255,255,0.9); top:-10px; box-shadow:0 2px 4px rgba(0,0,0,0.2); }
+    .hero-bee::before { left:-1px; transform:rotate(-18deg); } .hero-bee::after { right:-1px; transform:rotate(18deg); }
+    @keyframes hero-bee-bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
 
-    .hero-highlight {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: #fff6cf;
-      border: 1px solid #f2dd90;
-      font-size: 13px;
-      margin-top: 6px;
-    }
+    .layout { display:grid; grid-template-columns: minmax(0,2fr) minmax(280px,1.1fr); gap:24px; align-items:flex-start; }
+    @media (max-width:900px){ .layout{grid-template-columns:minmax(0,1fr);} }
 
-    .hero-filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 12px;
-    }
+    .card { background:rgba(255,255,255,0.95); border-radius:16px; padding:18px 18px 20px; box-shadow:0 10px 28px rgba(0,0,0,0.10); border:1px solid #f2e0b8; }
+    .card h3 { margin:0 0 12px; font-size:20px; display:flex; gap:8px; align-items:center; }
+    .events-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px; }
+    .event-card { background:#fffdf7; border-radius:14px; overflow:hidden; border:1px solid #f4ddaa; display:flex; flex-direction:column; min-height:100%; }
+    .event-image { height:150px; background-size:cover; background-position:center; position:relative; }
+    .event-tag { position:absolute; bottom:8px; left:10px; padding:4px 8px; border-radius:999px; background:rgba(255,255,255,0.9); font-size:11px; border:1px solid #f1d28e; }
+    .event-body { padding:12px 14px 14px; display:flex; flex-direction:column; gap:6px; flex:1; }
+    .event-title { font-weight:600; font-size:16px; }
+    .event-meta { font-size:13px; color:#6b5a3a; display:flex; flex-direction:column; gap:2px; }
+    .event-description { font-size:13px; color:#493825; margin-top:4px; }
 
-    .filter-pill {
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid #f0d792;
-      background: #fffaf0;
-      font-size: 13px;
-      cursor: pointer;
-    }
-
-    .filter-pill.active {
-      background: var(--accent-purple);
-      color: #fff;
-      border-color: var(--accent-purple);
-    }
-
-    .hero-image {
-      flex: 0 0 260px;
-      max-width: 300px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 16px;
-      padding: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-image-inner {
-      border-radius: 12px;
-      background: linear-gradient(145deg, #ffe9b8, #ffd56b);
-      padding: 18px;
-      text-align: center;
-      color: #5a4210;
-      font-size: 14px;
-    }
-
-    .hero-jar {
-      width: 90px;
-      height: 110px;
-      border-radius: 40px 40px 25px 25px;
-      border: 2px solid #e0c28e;
-      background: #fff9e8;
-      margin: 0 auto 10px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-jar::before {
-      content: "";
-      position: absolute;
-      top: -14px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 70px;
-      height: 18px;
-      border-radius: 12px;
-      background: linear-gradient(180deg, #f4c253, #e1a921);
-      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-    }
-
-    .hero-jar-fill {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 40%;
-      background: linear-gradient(180deg, #ffd467, #f4b41a);
-      box-shadow: inset 0 6px 10px rgba(255, 255, 255, 0.6);
-    }
-
-    .hero-bee {
-      position: absolute;
-      top: 8px;
-      right: 10px;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: linear-gradient(
-        90deg,
-        #2f2a26 0 18%,
-        #ffd54a 18% 46%,
-        #2f2a26 46% 64%,
-        #ffd54a 64% 82%,
-        #2f2a26 82% 100%
-      );
-      box-shadow: 0 4px 8px rgba(0,0,0,0.18);
-      animation: hero-bee-bob 2.5s ease-in-out infinite;
-    }
-
-    .hero-bee::before,
-    .hero-bee::after {
-      content: "";
-      position: absolute;
-      width: 12px;
-      height: 16px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.9);
-      top: -10px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-
-    .hero-bee::before {
-      left: -1px;
-      transform: rotate(-18deg);
-    }
-
-    .hero-bee::after {
-      right: -1px;
-      transform: rotate(18deg);
-    }
-
-    @keyframes hero-bee-bob {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-4px); }
-    }
-
-    /* Layout for main content */
-    .layout {
-      display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(280px, 1.1fr);
-      gap: 24px;
-      align-items: flex-start;
-    }
-
-    @media (max-width: 900px) {
-      .layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    /* Events list */
-    .card {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 16px;
-      padding: 18px 18px 20px;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.10);
-      border: 1px solid #f2e0b8;
-    }
-
-    .card h3 {
-      margin: 0 0 12px;
-      font-size: 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .card h3 span.icon {
-      font-size: 22px;
-    }
-
-    .events-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-    }
-
-    .event-card {
-      background: #fffdf7;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid #f4ddaa;
-      display: flex;
-      flex-direction: column;
-      min-height: 100%;
-    }
-
-    .event-image {
-      height: 150px;
-      background-size: cover;
-      background-position: center;
-      position: relative;
-    }
-
-    .event-tag {
-      position: absolute;
-      bottom: 8px;
-      left: 10px;
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.9);
-      font-size: 11px;
-      border: 1px solid #f1d28e;
-    }
-
-    .event-body {
-      padding: 12px 14px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      flex: 1;
-    }
-
-    .event-title {
-      font-weight: 600;
-      font-size: 16px;
-    }
-
-    .event-meta {
-      font-size: 13px;
-      color: #6b5a3a;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .event-description {
-      font-size: 13px;
-      color: #493825;
-      margin-top: 4px;
-    }
-
+    /* make actions align and spacing match AboutUs navbar exactly */
     .event-actions {
       margin-top: 10px;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end; /* actions on the right like AboutUs nav */
       align-items: center;
-      gap: 8px;
+      gap: 12px; /* same gap as AboutUs .nav-links */
     }
 
+    /* Event sign-up button: match AboutUs nav-link (white, not yellow) */
     .event-button {
-      border: none;
-      border-radius: 999px;
-      padding: 7px 14px;
-      font-size: 13px;
-      cursor: pointer;
-      background: var(--accent-purple);
-      color: #fff;
+      background-color: #ffffff;
+      color: #000000;
+      padding: 10px 14px;       /* same sizing as AboutUs nav links */
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      border: 1px solid rgba(0,0,0,0.08);
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease;
-      box-shadow: 0 3px 8px rgba(135,54,170,0.35);
+      gap: 6px;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.12s ease, background 0.2s ease;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+      margin: 0;
+      flex: 0 0 auto;
     }
-
     .event-button:hover {
-      background: #6b2987;
       transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+      background-color: #FFD166; /* hover highlight consistent with AboutUs */
+      color: #000;
     }
-
     .event-button:disabled {
       background: #d2bfdc;
       box-shadow: none;
       cursor: default;
       transform: none;
+      color: #ffffff;
+      border-color: #d2bfdc;
     }
 
     .event-pill {
@@ -380,90 +137,146 @@
       background: #f5f1ff;
       color: #4e3f84;
       white-space: nowrap;
-    }
-
-    /* My events sidebar */
-    .my-events {
-      position: sticky;
-      top: 80px;
-    }
-
-    .my-events-list {
       margin: 0;
-      padding: 0;
-      list-style: none;
+      flex: 0 0 auto;
+    }
+
+    .my-events { position: sticky; top: 80px; }
+    .my-events-list { margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:10px; max-height:360px; overflow:auto; }
+    .my-events-empty { font-size:13px; color:#7a6a4d; background:#fff7de; border-radius:12px; padding:10px 12px; }
+    .my-event-item { background:#fffdf5; border-radius:12px; padding:9px 11px; border:1px solid #f1ddaa; font-size:13px; display:flex; flex-direction:column; gap:2px; }
+    .my-event-title { font-weight:600; }
+    .my-event-meta { font-size:12px; color:#6b5a3a; }
+    .my-events-subtitle { font-size:12px; color:#7a6a4d; margin-bottom:8px; }
+    .bee-chip { display:inline-flex; align-items:center; gap:4px; padding:4px 9px; border-radius:999px; background:#fff8d9; border:1px solid #f1dd9a; font-size:11px; color:#7a5a18; }
+
+    /* ===========================
+       Header/footer styles (from AboutUs) to unify header/footer
+       NAV spacing adjusted to match AboutUs exactly
+       =========================== */
+    :root { --brand: #8736AA; --header-height: 110px; --footer-height: 84px; }
+    .navbar {
+      position: relative;
       display: flex;
-      flex-direction: column;
-      gap: 10px;
-      max-height: 360px;
-      overflow: auto;
-    }
-
-    .my-events-empty {
-      font-size: 13px;
-      color: #7a6a4d;
-      background: #fff7de;
-      border-radius: 12px;
-      padding: 10px 12px;
-    }
-
-    .my-event-item {
-      background: #fffdf5;
-      border-radius: 12px;
-      padding: 9px 11px;
-      border: 1px solid #f1ddaa;
-      font-size: 13px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .my-event-title {
-      font-weight: 600;
-    }
-
-    .my-event-meta {
-      font-size: 12px;
-      color: #6b5a3a;
-    }
-
-    .my-events-subtitle {
-      font-size: 12px;
-      color: #7a6a4d;
-      margin-bottom: 8px;
-    }
-
-    /* Cute tiny bees in headings */
-    .bee-chip {
-      display: inline-flex;
       align-items: center;
-      gap: 4px;
-      padding: 4px 9px;
-      border-radius: 999px;
-      background: #fff8d9;
-      border: 1px solid #f1dd9a;
-      font-size: 11px;
-      color: #7a5a18;
+      gap: 20px;
+      padding: 18px 48px;
+      background-color: var(--brand);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.14);
+      min-height: var(--header-height);
+      box-sizing: border-box;
+    }
+    .logo { flex: 0 0 auto; z-index: 2; }
+    .logo img { height: 72px; display: block; border-radius: 6px; }
+    .navbar h1 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      color: #fff;
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1;
+      z-index: 1;
+      pointer-events: none;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .navbar h1 .site-title {
+      font-family: 'Fredoka One', 'Open Sans', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      font-size: 30px;
+      background: linear-gradient(90deg, #FFD166 0%, #FFB86B 50%, #FF7A66 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 0.6px;
+      display: inline-block;
+      vertical-align: middle;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.16);
+      -webkit-text-stroke: 0.5px rgba(0,0,0,0.06);
+      pointer-events: auto;
+    }
+    .title-badge { width:64px; height:64px; margin-left:12px; vertical-align:middle; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.18)); transform:translateY(-4px); pointer-events:none; }
+
+    /* NAV LINKS: match AboutUs spacing and appearance */
+    .nav-links { margin-left: auto; flex: 0 0 auto; display: flex; gap: 12px; align-items: center; justify-content: flex-end; z-index: 2; }
+    .nav-links a {
+      color: #000000;
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      background-color: #ffffff;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+    .nav-links a:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0,0,0,0.08); background-color: #FFD166; color: #000; }
+
+    /* Make the sign-up link visually match the other nav buttons (white) */
+    .nav-links .sign-up {
+      padding: 10px 14px;            /* same padding as other links */
+      font-weight: 700;
+      border-radius: 8px;            /* match other buttons */
+      background-color: #ffffff;     /* <- removed the yellow, now white like the others */
+      color: #000000;
+      border: 1px solid rgba(0,0,0,0.08);
     }
 
+    .footer { background-color: var(--brand); color: #fff; text-align: center; padding: 22px 16px; font-size: 15px; min-height: var(--footer-height); box-sizing: border-box; }
+    @media (max-width: 520px) {
+      :root { --header-height: 78px; }
+      .logo img { height: 56px; }
+      .navbar { padding: 14px 18px; }
+      .navbar h1 .site-title { font-size: 20px; }
+      .title-badge { width: 44px; height: 44px; }
+    }
   </style>
 </head>
 <body>
-  <div class="navbar">
+  <!-- Unified header: same markup and styles as AboutUs, nav spacing now matches AboutUs exactly -->
+  <header class="navbar">
     <div class="logo">
-      <img src="images/logo.png" alt="The Hive logo">
+      <img src="images/logo.png" alt="Hive Connect logo">
     </div>
-    <h1>The Hive</h1>
-    <div class="nav-links">
-    
+
+    <h1>
+      <span class="site-title">The Hive</span>
+      <svg class="title-badge" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="beeBodyGrad" x1="0" x2="1">
+            <stop offset="0%" stop-color="#FFD166" />
+            <stop offset="100%" stop-color="#FFB347" />
+          </linearGradient>
+          <filter id="beeShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000" flood-opacity="0.18" />
+          </filter>
+        </defs>
+        <g filter="url(#beeShadow)" transform="translate(0,0)">
+          <path d="M24 20 C14 10, 6 8, 14 28 C20 40, 34 34, 24 20 Z" fill="#FFFFFF" opacity="0.85" stroke="#F0F0F0" stroke-width="0.6" />
+          <path d="M44 20 C54 10, 62 8, 54 28 C48 40, 34 34, 44 20 Z" fill="#FFFFFF" opacity="0.85" stroke="#F0F0F0" stroke-width="0.6" />
+          <ellipse cx="34" cy="34" rx="14" ry="18" fill="url(#beeBodyGrad)" />
+          <path d="M21 38 C28 42, 40 42, 47 38" stroke="#2b2b2b" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.95" />
+          <path d="M21 44 C28 48, 40 48, 47 44" stroke="#2b2b2b" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.95" />
+          <path d="M30 50 L38 50 L34 58 Z" fill="#2b2b2b" opacity="0.95" />
+          <circle cx="30" cy="26" r="2.6" fill="#111" />
+          <circle cx="29.2" cy="25.2" r="0.7" fill="#fff" opacity="0.95" />
+          <circle cx="38" cy="26" r="2.6" fill="#111" />
+          <circle cx="38.8" cy="25.2" r="0.7" fill="#fff" opacity="0.95" />
+          <path d="M30 33 C32 35, 36 35, 38 33" stroke="#2b2b2b" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.95" />
+          <path d="M28 18 C24 12, 18 12, 16 16" stroke="#2b2b2b" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.9" />
+          <path d="M38 18 C42 12, 48 12, 50 16" stroke="#2b2b2b" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.9" />
+        </g>
+      </svg>
+    </h1>
+
+    <nav class="nav-links" aria-label="Main navigation">
       <a href="index.html">Home</a>
       <a href="events.html">Events</a>
       <a href="AboutUs.html">About Us</a>
-      <!--<a href="SignupPage.html" class="sign-up">Sign up</a>-->
       <a href="TheHiveMeetTheTeam.html">Meet the Team</a>
-      <a href="SignupPage.html">Sign up</a>
-    </div>
-  </div>
+      <a href="SignupPage.html" class="sign-up">Sign up</a>
+    </nav>
+  </header>
 
   <main class="page">
     <!-- Hero section -->
@@ -529,6 +342,12 @@
       </aside>
     </section>
   </main>
+
+  <!-- Unified footer (replaced original footer markup with the shared footer) -->
+  <footer class="footer">
+    <h2>The #1 Volunteer Connection Spot</h2>
+    <p>Gain volunteer hours!</p>
+  </footer>
 
   <script>
     // Simple mock events data
