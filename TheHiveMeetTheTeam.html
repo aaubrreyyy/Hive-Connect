@@ -13,13 +13,14 @@
       background-color: #f5f5f5;
     }
 
+    /* MATCH HEADER STYLE FROM MAIN PAGE */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 20px;
-      background-color: #8736AA;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 0px 20px;
+      background-color: #FFE863; /* golden header */
+      box-shadow: 0 200px 40px rgba(0, 0, 0, 0.1);
     }
 
     .navbar a {
@@ -28,23 +29,31 @@
       margin: 0 10px;
     }
 
-    .navbar .sign-up {
+    /* BUTTON STYLE FROM MAIN PAGE */
+    .mybtn {
+      display: inline-block;
+      padding: 10px 15px;
+      background-color: rgb(242, 224, 167);
+      text-decoration: none;
+      color: black;
+      border-radius: 8px;
+    }
+
+    .mybtn:hover {
       background-color: #8736AA;
       color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
     }
 
     .container {
       display: flex;
       justify-content: center; 
       align-items: center;
-      flex-direction: column;  
+      flex-direction: column;
       padding: 50px 20px;
     }
 
     .text-section {
-      text-align: center; 
+      text-align: center;
     }
 
     .text-section h1 {
@@ -63,21 +72,6 @@
     .text-section p {
       font-size: 18px;
       margin-bottom: 20px;
-    }
-
-    .text-section .sign-up-btn {
-      background-color: #8736AA;
-      color: white;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 5px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-
-    .image-section img {
-      max-width: 90%;
-      border-radius: 10px;
     }
 
     .yellow-strip {
@@ -105,106 +99,29 @@
       padding: 0px;
     }
 
-    .green-block {
-      background-color: #f5f5f5;
-      padding: 20px;
-      margin-top: 20px;
-    }
-
-    .template-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      justify-content: space-around;
-    }
-
-    .template-cards .card {
-      background-color: #FFE863;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      color: #8736AA;
-    }
-
-    .template-cards .card a {
-      color: #8736AA;
-      text-decoration: underline;
-    }
-
+    /* Footer matching main site's footer styling */
     .footer {
-      background-color: #8736AA;
-      color: white;
       text-align: center;
-      padding: 10px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-
-    .testimonial-section {
-      background-color: #f5f5f5;
-      padding: 50px 20px;
-      text-align: center;
-    }
-
-    .testimonial-section h2 {
-      font-size: 30px;
-      margin-bottom: 20px;
-    }
-
-    .testimonial-section p {
-      font-size: 18px;
-      margin-bottom: 40px;
-    }
-
-    .testimonial {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: white;
+      color: #8736AA;
       padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .testimonial img {
-      max-width: 100px;
-      margin-right: 20px;
-      border-radius: 50%;
-    }
-
-    .testimonial .content {
-      text-align: left;
-    }
-
-    .testimonial .content h3 {
-      margin: 0 0 10px;
-    }
-
-    .testimonial .content p {
-      margin: 0;
-      font-size: 16px;
-      color: #666;
-    }
-
-    .testimonial .content .author {
-      font-weight: bold;
+      width: 100%;
+      background-color: transparent;
     }
   </style>
 </head>
 
 <body>
+
+  <!-- UPDATED NAVBAR WITH BUTTON BOXES -->
   <div class="navbar">
-    <div class="images/logo">
-     <img src="images/logo.png" alt="Logo" style="height: 70px;">
+    <div class="logo">
+      <img src="images/logo.png" alt="Logo" style="height: 70px;">
     </div>
+
     <div class="nav-links">
-      <a href="Signup Page.html">Sign up</a>
-      <a href="#">About Us</a>
-      <a href="TheHiveMeetTheTeam.html">Meet the Team</a>
+      <a href="Signup Page.html" class="mybtn">Sign up</a>
+      <a href="#" class="mybtn">About Us</a>
+      <a href="TheHiveMeetTheTeam.html" class="mybtn">Meet the Team</a>
     </div>
   </div>
 
@@ -226,8 +143,17 @@
       <img src="images/hospital.webp" alt="icon 4" class="icon">
     </div>
   </div>
+
+  <!-- Optional: You can add the footer text from main page if needed -->
+  <div class="footer">
+    <h2>The #1 volunteer hookup</h2>
+    <p>As endorsed by top ...</p>
+    <h6>*Not a factual claim (currently).</h6>
+  </div>
+
 </body>
 </html>
+
 
 
 
